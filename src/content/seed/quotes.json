@@ -1,0 +1,218 @@
+[
+  {
+    "id": "quote-psychology-01",
+    "format": "quote",
+    "topic": "psychology",
+    "depth": "light",
+    "text": "Men are disturbed not by things, but by the views which they take of things.",
+    "author": "Epictetus",
+    "context": "Stoic philosopher, Enchiridion (c. 125 AD, in translation). The core idea behind modern cognitive therapy."
+  },
+  {
+    "id": "quote-psychology-02",
+    "format": "quote",
+    "topic": "psychology",
+    "depth": "light",
+    "text": "The mind is its own place, and in itself can make a heaven of hell, a hell of heaven.",
+    "author": "John Milton",
+    "context": "From Paradise Lost (1667). A 350-year-old take on how your perspective shapes your experience."
+  },
+  {
+    "id": "quote-psychology-03",
+    "format": "quote",
+    "topic": "psychology",
+    "depth": "deep",
+    "text": "Nothing in life is as important as you think it is, while you are thinking about it.",
+    "author": "Daniel Kahneman",
+    "context": "Nobel-winning psychologist describing the focusing illusion in Thinking, Fast and Slow (2011)."
+  },
+  {
+    "id": "quote-money-01",
+    "format": "quote",
+    "topic": "money",
+    "depth": "light",
+    "text": "Price is what you pay. Value is what you get.",
+    "author": "Warren Buffett",
+    "context": "From his 2008 Berkshire Hathaway letter, crediting mentor Ben Graham. Cheap and good value aren't the same."
+  },
+  {
+    "id": "quote-money-02",
+    "format": "quote",
+    "topic": "money",
+    "depth": "light",
+    "text": "Beware of little expenses; a small leak will sink a great ship.",
+    "author": "Benjamin Franklin",
+    "context": "From The Way to Wealth (1758). Subscriptions and daily coffees were not yet invented, but the math was."
+  },
+  {
+    "id": "quote-money-03",
+    "format": "quote",
+    "topic": "money",
+    "depth": "deep",
+    "text": "It is not the man who has too little, but the man who craves more, that is poor.",
+    "author": "Seneca",
+    "context": "Roman Stoic, Letters to Lucilius (c. 65 AD, in translation). Wealth as a gap between what you have and want."
+  },
+  {
+    "id": "quote-history-01",
+    "format": "quote",
+    "topic": "history",
+    "depth": "light",
+    "text": "Those who cannot remember the past are condemned to repeat it.",
+    "author": "George Santayana",
+    "context": "Philosopher, The Life of Reason (1905). Often misquoted, but this is the original wording in English."
+  },
+  {
+    "id": "quote-history-02",
+    "format": "quote",
+    "topic": "history",
+    "depth": "light",
+    "text": "Veni, vidi, vici. (I came, I saw, I conquered.)",
+    "author": "Julius Caesar",
+    "context": "Caesar's famously brief message after a lightning win at Zela in 47 BC, per Plutarch and Suetonius."
+  },
+  {
+    "id": "quote-history-03",
+    "format": "quote",
+    "topic": "history",
+    "depth": "deep",
+    "text": "The only thing we have to fear is fear itself.",
+    "author": "Franklin D. Roosevelt",
+    "context": "First inaugural address, 1933, as the US sat deep in the Great Depression and bank panics."
+  },
+  {
+    "id": "quote-science-01",
+    "format": "quote",
+    "topic": "science",
+    "depth": "light",
+    "text": "If I have seen further it is by standing on the shoulders of Giants.",
+    "author": "Isaac Newton",
+    "context": "Letter to Robert Hooke, 1675/76. Science as a relay race, not a solo sprint."
+  },
+  {
+    "id": "quote-science-02",
+    "format": "quote",
+    "topic": "science",
+    "depth": "deep",
+    "text": "The first principle is that you must not fool yourself, and you are the easiest person to fool.",
+    "author": "Richard Feynman",
+    "context": "Caltech commencement speech \"Cargo Cult Science\" (1974), on honesty in research."
+  },
+  {
+    "id": "quote-science-03",
+    "format": "quote",
+    "topic": "science",
+    "depth": "light",
+    "text": "Extraordinary claims require extraordinary evidence.",
+    "author": "Carl Sagan",
+    "context": "Popularized by Sagan in his TV series Cosmos (1980). A handy filter for anything you read online."
+  },
+  {
+    "id": "quote-space-01",
+    "format": "quote",
+    "topic": "space",
+    "depth": "light",
+    "text": "A planet is the cradle of mind, but one cannot live in a cradle forever.",
+    "author": "Konstantin Tsiolkovsky",
+    "context": "Russian rocketry pioneer, in a 1911 letter (in translation). He worked out rocket math decades before spaceflight."
+  },
+  {
+    "id": "quote-space-02",
+    "format": "quote",
+    "topic": "space",
+    "depth": "light",
+    "text": "Look again at that dot. That's here. That's home. That's us.",
+    "author": "Carl Sagan",
+    "context": "From Pale Blue Dot (1994), about Voyager 1's photo of Earth from about 6 billion km away."
+  },
+  {
+    "id": "quote-space-03",
+    "format": "quote",
+    "topic": "space",
+    "depth": "deep",
+    "text": "We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard.",
+    "author": "John F. Kennedy",
+    "context": "Speech at Rice University, 1962. Apollo 11 landed less than seven years later."
+  },
+  {
+    "id": "quote-health-01",
+    "format": "quote",
+    "topic": "health",
+    "depth": "light",
+    "text": "An ounce of prevention is worth a pound of cure.",
+    "author": "Benjamin Franklin",
+    "context": "From a 1735 letter Franklin wrote urging Philadelphians to prevent fires. It applies just as well to your body."
+  },
+  {
+    "id": "quote-health-02",
+    "format": "quote",
+    "topic": "health",
+    "depth": "light",
+    "text": "Sleep is that golden chain that ties health and our bodies together.",
+    "author": "Thomas Dekker",
+    "context": "English playwright, The Gull's Hornbook (1609). Sleep science has only strengthened his point."
+  },
+  {
+    "id": "quote-health-03",
+    "format": "quote",
+    "topic": "health",
+    "depth": "deep",
+    "text": "Those who think they have not time for bodily exercise will sooner or later have to find time for illness.",
+    "author": "Edward Stanley, 15th Earl of Derby",
+    "context": "From an 1873 address at Liverpool College. Still the best argument against \"too busy to work out.\""
+  },
+  {
+    "id": "quote-productivity-01",
+    "format": "quote",
+    "topic": "productivity",
+    "depth": "light",
+    "text": "How we spend our days is, of course, how we spend our lives.",
+    "author": "Annie Dillard",
+    "context": "Pulitzer-winning author, The Writing Life (1989). Your calendar is your biography in progress."
+  },
+  {
+    "id": "quote-productivity-02",
+    "format": "quote",
+    "topic": "productivity",
+    "depth": "deep",
+    "text": "I have two kinds of problems, the urgent and the important. The urgent are not important, and the important are never urgent.",
+    "author": "Dwight D. Eisenhower",
+    "context": "From a 1954 speech, quoting a former college president. It later inspired the Eisenhower Matrix."
+  },
+  {
+    "id": "quote-productivity-03",
+    "format": "quote",
+    "topic": "productivity",
+    "depth": "light",
+    "text": "The best is the enemy of the good.",
+    "author": "Voltaire",
+    "context": "French writer who popularized an Italian proverb in the 1760s-70s. The classic case for shipping over polishing."
+  },
+  {
+    "id": "quote-tech-01",
+    "format": "quote",
+    "topic": "tech",
+    "depth": "light",
+    "text": "Any sufficiently advanced technology is indistinguishable from magic.",
+    "author": "Arthur C. Clarke",
+    "context": "The third of \"Clarke's three laws,\" from Profiles of the Future (1973 edition)."
+  },
+  {
+    "id": "quote-tech-02",
+    "format": "quote",
+    "topic": "tech",
+    "depth": "light",
+    "text": "The best way to predict the future is to invent it.",
+    "author": "Alan Kay",
+    "context": "Computer scientist at Xerox PARC, 1971. His team helped invent the modern graphical interface."
+  },
+  {
+    "id": "quote-tech-03",
+    "format": "quote",
+    "topic": "tech",
+    "depth": "deep",
+    "text": "The Analytical Engine weaves algebraical patterns just as the Jacquard-loom weaves flowers and leaves.",
+    "author": "Ada Lovelace",
+    "context": "From her 1843 notes on Babbage's machine, linking punched-card looms to computing."
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "id": "video-psychology-01",
+    "format": "video",
+    "topic": "psychology",
+    "depth": "light",
+    "title": "The Overview Effect",
+    "caption": "Astronauts who see Earth from space often describe a lasting shift: borders vanish and humanity feels like one fragile family.",
+    "videoUrl": "https://images-assets.nasa.gov/video/art002m1200962241_Goodnight-Earth_mp4/art002m1200962241_Goodnight-Earth_mp4~medium.mp4",
+    "durationSec": 53
+  },
+  {
+    "id": "video-psychology-02",
+    "format": "video",
+    "topic": "psychology",
+    "depth": "deep",
+    "title": "Why You Keep Scrolling",
+    "caption": "Unpredictable rewards are the most habit-forming. B.F. Skinner showed it with pigeons; every refresh of a feed works the same way.",
+    "videoUrl": "https://assets.mixkit.co/videos/4801/4801-720.mp4",
+    "durationSec": 16
+  },
+  {
+    "id": "video-money-01",
+    "format": "video",
+    "topic": "money",
+    "depth": "light",
+    "title": "Pay Yourself First",
+    "caption": "Automate saving on payday. Money moved before you see it doesn't get spent, so saving stops relying on willpower.",
+    "videoUrl": "https://assets.mixkit.co/videos/18299/18299-720.mp4",
+    "durationSec": 16
+  },
+  {
+    "id": "video-money-02",
+    "format": "video",
+    "topic": "money",
+    "depth": "deep",
+    "title": "The Rule of 72",
+    "caption": "Divide 72 by a yearly rate to see how long money takes to double. At 3% inflation, prices double in about 24 years.",
+    "videoUrl": "https://assets.mixkit.co/videos/18305/18305-720.mp4",
+    "durationSec": 16
+  },
+  {
+    "id": "video-history-01",
+    "format": "video",
+    "topic": "history",
+    "depth": "light",
+    "title": "The Plaque Left on the Moon",
+    "caption": "Apollo 11's lunar module left a plaque on the Moon in 1969. Its last line: \"We came in peace for all mankind.\"",
+    "videoUrl": "https://images-assets.nasa.gov/video/Apollo_11_Plaque_Comparison_720p/Apollo_11_Plaque_Comparison_720p~medium.mp4",
+    "durationSec": 44
+  },
+  {
+    "id": "video-history-02",
+    "format": "video",
+    "topic": "history",
+    "depth": "light",
+    "title": "The Shuttle's Last Ride",
+    "caption": "On July 21, 2011, Atlantis landed in Florida, ending NASA's Space Shuttle program after 30 years and 135 missions.",
+    "videoUrl": "https://images-assets.nasa.gov/video/ksc_072111_sts135_deorbit/ksc_072111_sts135_deorbit~small.mp4",
+    "durationSec": 41
+  },
+  {
+    "id": "video-science-01",
+    "format": "video",
+    "topic": "science",
+    "depth": "light",
+    "title": "Fire Without Gravity",
+    "caption": "On Earth, hot air rises and stretches flames upward. In microgravity there's no rising air, so flames turn round, dim and slow.",
+    "videoUrl": "https://images-assets.nasa.gov/video/SoFIE-GEL/SoFIE-GEL~medium.mp4",
+    "durationSec": 46
+  },
+  {
+    "id": "video-science-02",
+    "format": "video",
+    "topic": "science",
+    "depth": "light",
+    "title": "Why Water Floats as a Ball",
+    "caption": "In orbit, surface tension is the strongest force on loose water, so it pulls itself into a wobbly sphere that bends light like a lens.",
+    "videoUrl": "https://images-assets.nasa.gov/video/art002m1200950026_SHARED_Returned_0025_Z9_019_Wiseman/art002m1200950026_SHARED_Returned_0025_Z9_019_Wiseman~medium.mp4",
+    "durationSec": 43
+  },
+  {
+    "id": "video-space-01",
+    "format": "video",
+    "topic": "space",
+    "depth": "light",
+    "title": "You See the Sun's Past",
+    "caption": "Sunlight takes about 8 minutes to reach Earth, so when we spot a solar flare, it actually happened 8 minutes earlier.",
+    "videoUrl": "https://images-assets.nasa.gov/video/GSFC_20140911_SDO_m11651_Flare/GSFC_20140911_SDO_m11651_Flare~medium.mp4",
+    "durationSec": 37
+  },
+  {
+    "id": "video-space-02",
+    "format": "video",
+    "topic": "space",
+    "depth": "light",
+    "title": "The Moon Is Leaving",
+    "caption": "The Moon drifts about 3.8 cm farther from Earth every year, roughly as fast as your fingernails grow. Lasers bounced off it prove it.",
+    "videoUrl": "https://images-assets.nasa.gov/video/art001m1013321641_1/art001m1013321641_1~small.mp4",
+    "durationSec": 31
+  },
+  {
+    "id": "video-health-01",
+    "format": "video",
+    "topic": "health",
+    "depth": "light",
+    "title": "Screens vs. Sleep",
+    "caption": "Bright screen light at night can delay melatonin, the hormone that makes you sleepy. Put the phone away before bed to fall asleep faster.",
+    "videoUrl": "https://assets.mixkit.co/videos/31412/31412-720.mp4",
+    "durationSec": 13
+  },
+  {
+    "id": "video-health-02",
+    "format": "video",
+    "topic": "health",
+    "depth": "light",
+    "title": "The After-Meal Walk",
+    "caption": "Even 2 to 5 minutes of light walking after eating helps blunt blood sugar spikes, a 2022 review found. No gym required.",
+    "videoUrl": "https://assets.mixkit.co/videos/40656/40656-720.mp4",
+    "durationSec": 12
+  },
+  {
+    "id": "video-productivity-01",
+    "format": "video",
+    "topic": "productivity",
+    "depth": "light",
+    "title": "The Two-Minute Rule",
+    "caption": "If a task takes under two minutes, do it now. Tracking it later costs more than finishing it. (David Allen, Getting Things Done)",
+    "videoUrl": "https://assets.mixkit.co/videos/4806/4806-720.mp4",
+    "durationSec": 16
+  },
+  {
+    "id": "video-productivity-02",
+    "format": "video",
+    "topic": "productivity",
+    "depth": "light",
+    "title": "The Pomodoro Technique",
+    "caption": "Work 25 minutes, break 5. Francesco Cirillo invented it in the late 1980s using a tomato-shaped kitchen timer.",
+    "videoUrl": "https://assets.mixkit.co/videos/28901/28901-720.mp4",
+    "durationSec": 11
+  },
+  {
+    "id": "video-tech-01",
+    "format": "video",
+    "topic": "tech",
+    "depth": "light",
+    "title": "The Helicopter That Overachieved",
+    "caption": "NASA's Ingenuity was built for up to 5 test flights on Mars. It flew 72 times, in air about 1% as dense as Earth's.",
+    "videoUrl": "https://images-assets.nasa.gov/video/JPL-20220527-M2020f-0001-NASAs_Ingenuity_Mars_Helicopter_Captures_Video_of_Record_Flight2/JPL-20220527-M2020f-0001-NASAs_Ingenuity_Mars_Helicopter_Captures_Video_of_Record_Flight2~small.mp4",
+    "durationSec": 35
+  },
+  {
+    "id": "video-tech-02",
+    "format": "video",
+    "topic": "tech",
+    "depth": "light",
+    "title": "Robots That Fly on Fans",
+    "caption": "NASA's Astrobee robots drift around the space station and steer by pushing air with electric fans. No wings or thrusters needed.",
+    "videoUrl": "https://images-assets.nasa.gov/video/jsc2021m000145_Shannon_Walker_conducts_test_with_Astrobee/jsc2021m000145_Shannon_Walker_conducts_test_with_Astrobee~medium.mp4",
+    "durationSec": 36
+  }
+]

@@ -1,0 +1,282 @@
+[
+  {
+    "id": "book-psychology-01",
+    "format": "book",
+    "topic": "psychology",
+    "depth": "deep",
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "hook": "Your brain runs two operating systems, and the fast one is usually driving.",
+    "slides": [
+      {
+        "heading": "Two modes of thinking",
+        "body": "One mode is quick, automatic, and effortless, like reading a face. The other is slow and effortful, like doing long division. Most daily choices come from the fast one."
+      },
+      {
+        "heading": "Shortcuts that misfire",
+        "body": "The fast mode leans on mental shortcuts. They save energy but create predictable errors, like judging how likely something is by how easily an example comes to mind."
+      },
+      {
+        "heading": "Losses loom larger",
+        "body": "With prospect theory, Kahneman and Tversky showed people feel losses more sharply than equal gains, so we often take bad bets just to avoid a sure loss."
+      },
+      {
+        "heading": "Two selves, two stories",
+        "body": "The self living an experience and the self remembering it disagree. Memory overweights the peak moment and the ending, not how long something lasted."
+      }
+    ],
+    "takeaway": "Before a big decision, write down one reason you might be wrong, then deliberately slow down to check it."
+  },
+  {
+    "id": "book-psychology-02",
+    "format": "book",
+    "topic": "psychology",
+    "depth": "light",
+    "title": "Influence: The Psychology of Persuasion",
+    "author": "Robert B. Cialdini",
+    "hook": "Why you said yes to something you didn't want, and how to notice next time.",
+    "slides": [
+      {
+        "heading": "Reciprocity",
+        "body": "People feel pressure to return favors, even small unrequested ones. A free sample isn't only generous. It creates a quiet sense of debt."
+      },
+      {
+        "heading": "Commitment and consistency",
+        "body": "Once we take a small public stance, we tend to act in line with it. Tiny first agreements can pave the way for much bigger asks later."
+      },
+      {
+        "heading": "Social proof",
+        "body": "When unsure, we copy what people like us are doing. Reviews, \"most popular\" badges, and packed restaurants all tap into this."
+      },
+      {
+        "heading": "Authority and scarcity",
+        "body": "Titles and uniforms make us defer, and things feel more valuable when they're running out. Countdown timers work for a reason."
+      }
+    ],
+    "takeaway": "When you feel rushed to say yes, name the tactic out loud (\"this is scarcity\") and give yourself a day."
+  },
+  {
+    "id": "book-money-01",
+    "format": "book",
+    "topic": "money",
+    "depth": "light",
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "hook": "Doing well with money has less to do with smarts and more to do with behavior.",
+    "slides": [
+      {
+        "heading": "Your history shapes your money",
+        "body": "People who grew up during high inflation or a crash see risk differently. Nobody's crazy. Everyone is reasoning from their own limited experience."
+      },
+      {
+        "heading": "Time does the heavy lifting",
+        "body": "Compounding rewards patience more than brilliance. Staying invested for decades usually matters more than finding the highest possible return."
+      },
+      {
+        "heading": "Wealth is what you don't see",
+        "body": "A fancy car shows spending, not wealth. Real wealth is the money you didn't spend, sitting quietly and giving you options."
+      },
+      {
+        "heading": "Leave room for error",
+        "body": "Plans break. A cash buffer and modest assumptions let you survive bad luck without being forced to sell at the worst time."
+      }
+    ],
+    "takeaway": "Set up an automatic transfer to savings or investments on payday so good behavior happens without willpower."
+  },
+  {
+    "id": "book-history-01",
+    "format": "book",
+    "topic": "history",
+    "depth": "deep",
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "hook": "How a not-very-special ape ended up running the planet.",
+    "slides": [
+      {
+        "heading": "Shared stories",
+        "body": "Harari argues humans took over because we can cooperate in huge groups around things that exist only in our heads, like nations, laws, and money."
+      },
+      {
+        "heading": "Farming's mixed deal",
+        "body": "Agriculture let populations boom, but Harari suggests many early farmers worked harder and ate a narrower diet than foragers did."
+      },
+      {
+        "heading": "Forces that unify",
+        "body": "Money, empires, and universal religions pulled scattered cultures into larger networks, making strangers able to trust and trade with each other."
+      },
+      {
+        "heading": "Admitting ignorance",
+        "body": "The scientific revolution took off when people accepted they didn't know everything, and began investing in research to find out."
+      }
+    ],
+    "takeaway": "Pick one thing you treat as \"just how it is\" (a job title, a currency) and ask what shared belief keeps it working."
+  },
+  {
+    "id": "book-productivity-01",
+    "format": "book",
+    "topic": "productivity",
+    "depth": "light",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "hook": "Tiny changes, repeated daily, quietly compound into big results.",
+    "slides": [
+      {
+        "heading": "Systems beat goals",
+        "body": "Winners and losers often share the same goals. What differs is the daily process. Focus on the system and the results tend to follow."
+      },
+      {
+        "heading": "Change your identity",
+        "body": "Instead of \"I want to run a marathon,\" think \"I'm a runner.\" Each small action is a vote for the kind of person you're becoming."
+      },
+      {
+        "heading": "Four levers",
+        "body": "Make good habits obvious, attractive, easy, and satisfying. Flip each one to break a bad habit: invisible, unattractive, hard, unsatisfying."
+      },
+      {
+        "heading": "Design your space",
+        "body": "Environment often beats motivation. Put the guitar in the middle of the room and the phone charger outside the bedroom."
+      }
+    ],
+    "takeaway": "Shrink a habit you keep skipping into a two-minute version, like one push-up or one page, and do it today."
+  },
+  {
+    "id": "book-productivity-02",
+    "format": "book",
+    "topic": "productivity",
+    "depth": "deep",
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "hook": "In a world of pings, the ability to focus for hours is a career superpower.",
+    "slides": [
+      {
+        "heading": "Focus is rare and valuable",
+        "body": "Work that needs sustained concentration, like writing, coding, or strategy, is where most real value gets made, and it's getting harder to do."
+      },
+      {
+        "heading": "Switching leaves residue",
+        "body": "After you check a message, part of your attention stays stuck on it. Constant quick checks mean you rarely think at full strength."
+      },
+      {
+        "heading": "Schedule depth on purpose",
+        "body": "Block regular, distraction-free sessions with a set place, time, and goal. Treat them like meetings you can't cancel."
+      },
+      {
+        "heading": "Train your attention",
+        "body": "Resist reaching for your phone at every idle moment. Getting comfortable with boredom makes it easier to stay with hard problems."
+      }
+    ],
+    "takeaway": "Book one 90-minute block tomorrow with notifications off, and decide now exactly what you'll work on."
+  },
+  {
+    "id": "book-health-01",
+    "format": "book",
+    "topic": "health",
+    "depth": "light",
+    "title": "Why We Sleep",
+    "author": "Matthew Walker",
+    "hook": "Sleep isn't downtime. It's when your brain and body do some of their most important work.",
+    "slides": [
+      {
+        "heading": "Two sleep signals",
+        "body": "Sleepiness builds from a chemical called adenosine the longer you're awake, while your internal body clock separately sets when you feel alert or tired."
+      },
+      {
+        "heading": "Caffeine borrows energy",
+        "body": "Caffeine blocks adenosine's signal instead of removing it. When it wears off, the built-up sleep pressure is still waiting for you."
+      },
+      {
+        "heading": "Memory needs sleep",
+        "body": "Sleep helps lock in what you learned during the day. Pulling an all-nighter before an exam works against the very thing you're trying to do."
+      },
+      {
+        "heading": "Protect the basics",
+        "body": "A consistent schedule, a cool and dark room, and less alcohol near bedtime all help. Alcohol can knock you out but fragments sleep."
+      }
+    ],
+    "takeaway": "Pick a wake-up time and keep it every day this week, weekends included."
+  },
+  {
+    "id": "book-space-01",
+    "format": "book",
+    "topic": "space",
+    "depth": "deep",
+    "title": "Pale Blue Dot",
+    "author": "Carl Sagan",
+    "hook": "One tiny pixel photographed from deep space changes how you see everything.",
+    "slides": [
+      {
+        "heading": "The photo",
+        "body": "In 1990, Voyager 1 looked back from beyond Neptune's orbit and captured Earth as a speck smaller than a pixel, caught in a sunbeam."
+      },
+      {
+        "heading": "Humbling upgrades",
+        "body": "Science has repeatedly moved us away from the center: Earth orbits the Sun, which is one star among billions. Sagan saw this as clarifying, not crushing."
+      },
+      {
+        "heading": "A tour of worlds",
+        "body": "Sagan walks through what robotic missions revealed about other planets, and what their strange climates teach us about our own."
+      },
+      {
+        "heading": "Why explore",
+        "body": "He argues that learning to travel beyond Earth is both a natural human urge and a long-term way to protect our species."
+      }
+    ],
+    "takeaway": "Look up the Pale Blue Dot image tonight, then spend five minutes asking what actually matters in your week."
+  },
+  {
+    "id": "book-tech-01",
+    "format": "book",
+    "topic": "tech",
+    "depth": "deep",
+    "title": "The Innovator's Dilemma",
+    "author": "Clayton M. Christensen",
+    "hook": "Why great companies can do everything right and still get wiped out.",
+    "slides": [
+      {
+        "heading": "Good management, bad outcome",
+        "body": "Leading firms listen to their best customers and chase higher margins. That sensible behavior is exactly what blinds them to certain threats."
+      },
+      {
+        "heading": "Sustaining vs. disruptive",
+        "body": "Sustaining innovations improve products for existing customers. Disruptive ones start out worse on those measures but are cheaper, simpler, or more convenient."
+      },
+      {
+        "heading": "Starting at the bottom",
+        "body": "Disruptors often win low-end or brand-new customers that incumbents ignore, then improve until they're good enough for the mainstream."
+      },
+      {
+        "heading": "How to respond",
+        "body": "Christensen suggests giving a disruptive project its own small, independent unit whose customers and cost structure fit the new market."
+      }
+    ],
+    "takeaway": "List one cheaper, \"not good enough\" competitor in your field and ask what happens if it keeps improving for five years."
+  },
+  {
+    "id": "book-science-01",
+    "format": "book",
+    "topic": "science",
+    "depth": "light",
+    "title": "The Selfish Gene",
+    "author": "Richard Dawkins",
+    "hook": "Evolution makes more sense when you look at it from the gene's point of view.",
+    "slides": [
+      {
+        "heading": "Genes are the replicators",
+        "body": "Dawkins argues natural selection is best understood at the level of genes, which copy themselves across generations while bodies come and go."
+      },
+      {
+        "heading": "Bodies as vehicles",
+        "body": "Organisms are, in this view, the machines genes build to get themselves copied. The \"selfish\" label is a metaphor, not a claim about motives."
+      },
+      {
+        "heading": "Selfish genes, kind animals",
+        "body": "Helping relatives or trading favors can spread the genes behind that behavior, which explains how real cooperation evolves."
+      },
+      {
+        "heading": "The birth of the meme",
+        "body": "Dawkins coined \"meme\" for ideas and habits that spread from mind to mind, copying and mutating a bit like genes do."
+      }
+    ],
+    "takeaway": "Next time a trend spreads online, ask what makes it easy to copy. That's the meme idea in action."
+  }
+]

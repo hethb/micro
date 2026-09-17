@@ -1,0 +1,7 @@
+# BEGIN VEYR GRAPHIFY
+.build/
+node_modules/
+vendor/
+Vendored/
+**/checkouts/
+# END VEYR GRAPHIFY
