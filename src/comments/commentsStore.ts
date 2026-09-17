@@ -51,6 +51,9 @@ interface CommentsState {
   /** Returns the posted comment; throws with a readable message when it fails. */
   post(cardId: string, body: string): Promise<Comment>;
   remove(cardId: string, commentId: string): Promise<void>;
+  /** Drops comments the user just hid by reporting or blocking, without refetching. */
+  hide(predicate: (comment: Comment) => boolean): void;
+  reset(): void;
 }
 
 /** The name a comment is posted under. */
@@ -84,7 +87,8 @@ export const useComments = create<CommentsState>()((set, get) => ({
       threads: { ...s.threads, [cardId]: { status: 'loading', items: s.threads[cardId]?.items ?? [] } },
     }));
     const { data, error } = await supabase
-      .from('comments')
+      // The view leaves out comments from blocked people and ones the user reported.
+      .from('visible_comments')
       .select('id, card_id, user_id, author_name, body, created_at')
       .eq('card_id', cardId)
       .order('created_at', { ascending: false })
@@ -124,6 +128,21 @@ export const useComments = create<CommentsState>()((set, get) => ({
     });
     return comment;
   },
+
+  hide: (predicate) =>
+    set((s) => {
+      const threads: Record<string, Thread> = {};
+      const counts = { ...s.counts };
+      for (const [cardId, thread] of Object.entries(s.threads)) {
+        const items = thread.items.filter((c) => !predicate(c));
+        threads[cardId] = { ...thread, items };
+        const hidden = thread.items.length - items.length;
+        if (hidden > 0) counts[cardId] = Math.max(0, (counts[cardId] ?? hidden) - hidden);
+      }
+      return { threads, counts };
+    }),
+
+  reset: () => set({ counts: {}, threads: {} }),
 
   remove: async (cardId, commentId) => {
     if (!supabase) return;

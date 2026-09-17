@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
+  Alert,
   FlatList,
   KeyboardAvoidingView,
   Modal,
@@ -15,6 +16,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useAccount } from '@/account/accountStore';
 import { MAX_COMMENT_LENGTH, useComments, type Comment } from '@/comments/commentsStore';
+import { useModeration, type ReportReason } from '@/comments/moderationStore';
 import { formatAge } from '@/comments/time';
 import type { Card } from '@/content/types';
 import { useActivity } from '@/state/activityStore';
@@ -50,6 +52,7 @@ function CommentThread({ card }: { card: Card }) {
   const loadThread = useComments((s) => s.loadThread);
   const post = useComments((s) => s.post);
   const remove = useComments((s) => s.remove);
+  const hide = useComments((s) => s.hide);
   const userId = useAccount((s) => s.userId);
 
   const [draft, setDraft] = useState('');
@@ -87,6 +90,34 @@ function CommentThread({ card }: { card: Card }) {
     [remove],
   );
 
+  const onReport = useCallback(
+    async (comment: Comment, reason: ReportReason) => {
+      setError(null);
+      try {
+        await useModeration.getState().report(comment.id, reason);
+        hide((c) => c.id === comment.id);
+        Alert.alert('Thanks for letting us know', 'This comment is hidden for you and our team will review it.');
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Could not report that comment.');
+      }
+    },
+    [hide],
+  );
+
+  const onBlock = useCallback(
+    async (comment: Comment) => {
+      setError(null);
+      try {
+        await useModeration.getState().block({ id: comment.authorId, name: comment.authorName });
+        hide((c) => c.authorId === comment.authorId);
+        Alert.alert(`${comment.authorName} blocked`, 'You won\u2019t see their comments. Undo this in Settings.');
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Could not block that person.');
+      }
+    },
+    [hide],
+  );
+
   const items = thread?.items ?? [];
   const loading = !thread || (thread.status === 'loading' && items.length === 0);
 
@@ -118,7 +149,15 @@ function CommentThread({ card }: { card: Card }) {
               <Text style={styles.placeholderText}>No comments yet. Start the conversation.</Text>
             </View>
           }
-          renderItem={({ item }) => <CommentRow comment={item} mine={item.authorId === userId} onDelete={onDelete} />}
+          renderItem={({ item }) => (
+            <CommentRow
+              comment={item}
+              mine={item.authorId === userId}
+              onDelete={onDelete}
+              onReport={onReport}
+              onBlock={onBlock}
+            />
+          )}
         />
       )}
 
@@ -157,15 +196,38 @@ function CommentThread({ card }: { card: Card }) {
   );
 }
 
-function CommentRow({
-  comment,
-  mine,
-  onDelete,
-}: {
+interface CommentRowProps {
   comment: Comment;
   mine: boolean;
   onDelete(comment: Comment): void;
-}) {
+  onReport(comment: Comment, reason: ReportReason): void;
+  onBlock(comment: Comment): void;
+}
+
+function CommentRow({ comment, mine, onDelete, onReport, onBlock }: CommentRowProps) {
+  const openMenu = () => {
+    Alert.alert(comment.authorName, 'What would you like to do?', [
+      { text: 'Report comment', style: 'destructive', onPress: askReason },
+      { text: `Block ${comment.authorName}`, style: 'destructive', onPress: confirmBlock },
+      { text: 'Cancel', style: 'cancel' },
+    ]);
+  };
+
+  const askReason = () => {
+    Alert.alert('Report this comment', 'Tell us what\u2019s wrong with it.', [
+      { text: 'Spam or scam', onPress: () => onReport(comment, 'spam') },
+      { text: 'Abuse or hate', onPress: () => onReport(comment, 'abuse') },
+      { text: 'Something else', onPress: () => onReport(comment, 'other') },
+    ]);
+  };
+
+  const confirmBlock = () => {
+    Alert.alert(`Block ${comment.authorName}?`, 'You won\u2019t see their comments anywhere in Micro.', [
+      { text: 'Block', style: 'destructive', onPress: () => onBlock(comment) },
+      { text: 'Cancel', style: 'cancel' },
+    ]);
+  };
+
   return (
     <View style={styles.comment}>
       <View style={styles.avatar}>
@@ -177,7 +239,7 @@ function CommentRow({
         </Text>
         <Text style={styles.commentText}>{comment.body}</Text>
       </View>
-      {mine && (
+      {mine ? (
         <Pressable
           onPress={() => onDelete(comment)}
           hitSlop={10}
@@ -185,6 +247,15 @@ function CommentRow({
           accessibilityLabel="Delete your comment"
           style={({ pressed }) => pressed && { opacity: 0.6 }}>
           <Icon name="trash" size={16} color={colors.textDim} />
+        </Pressable>
+      ) : (
+        <Pressable
+          onPress={openMenu}
+          hitSlop={10}
+          accessibilityRole="button"
+          accessibilityLabel={`Report or block ${comment.authorName}`}
+          style={({ pressed }) => pressed && { opacity: 0.6 }}>
+          <Icon name="more" size={16} color={colors.textDim} />
         </Pressable>
       )}
     </View>

@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { initAccount, useAccount } from '@/account/accountStore';
+import { watchAccountForComments } from '@/comments/session';
 import { usePrefs } from '@/state/prefsStore';
 import { useHydrated } from '@/state/useHydrated';
 import { colors } from '@/theme/tokens';
@@ -18,7 +19,13 @@ export default function RootLayout() {
 
   // Account sync writes into the stores, so it must start after they've loaded from disk.
   useEffect(() => {
-    if (hydrated) return initAccount();
+    if (!hydrated) return;
+    const stopAccount = initAccount();
+    const stopComments = watchAccountForComments();
+    return () => {
+      stopAccount();
+      stopComments();
+    };
   }, [hydrated]);
 
   const loading = !hydrated || status === 'loading';
