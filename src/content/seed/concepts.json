@@ -412,7 +412,6 @@
       "topic": "space",
       "related": [
         "planets",
-        "robotics",
         "nasa"
       ]
     },
@@ -443,7 +442,6 @@
       "topic": "space",
       "related": [
         "space-exploration",
-        "robotics",
         "the-moon",
         "mars"
       ]
@@ -589,84 +587,27 @@
       ]
     },
     {
-      "id": "robotics",
-      "label": "Robotics",
-      "topic": "tech",
+      "id": "stress",
+      "label": "Stress",
+      "topic": "psychology",
       "related": [
-        "nasa",
-        "mars",
+        "sleep",
+        "exercise",
+        "perspective"
+      ]
+    },
+    {
+      "id": "ancient-rome",
+      "label": "Ancient Rome",
+      "topic": "history",
+      "related": [
+        "ancient-egypt",
+        "medieval-europe",
         "innovation"
       ]
     }
   ],
   "cards": {
-    "video-psychology-01": [
-      "earth-from-space",
-      "perspective"
-    ],
-    "video-psychology-02": [
-      "habits",
-      "screen-time",
-      "classic-experiments"
-    ],
-    "video-money-01": [
-      "habits",
-      "wealth"
-    ],
-    "video-money-02": [
-      "compounding",
-      "inflation"
-    ],
-    "video-history-01": [
-      "the-moon",
-      "nasa"
-    ],
-    "video-history-02": [
-      "nasa",
-      "space-exploration"
-    ],
-    "video-science-01": [
-      "gravity",
-      "physics"
-    ],
-    "video-science-02": [
-      "gravity",
-      "physics"
-    ],
-    "video-space-01": [
-      "speed-of-light",
-      "the-sun"
-    ],
-    "video-space-02": [
-      "the-moon",
-      "gravity"
-    ],
-    "video-health-01": [
-      "sleep",
-      "screen-time"
-    ],
-    "video-health-02": [
-      "exercise",
-      "prevention"
-    ],
-    "video-productivity-01": [
-      "time-management",
-      "prioritization"
-    ],
-    "video-productivity-02": [
-      "pomodoro-technique",
-      "time-management"
-    ],
-    "video-tech-01": [
-      "mars",
-      "robotics",
-      "nasa"
-    ],
-    "video-tech-02": [
-      "robotics",
-      "gravity",
-      "nasa"
-    ],
     "fact-psychology-01": [
       "memory",
       "learning-science",
@@ -1013,6 +954,98 @@
       "history-of-computing"
     ],
     "quote-tech-03": [
+      "history-of-computing",
+      "innovation"
+    ],
+    "video-psychology-CBI8eWEXlMI": [
+      "stress",
+      "perspective"
+    ],
+    "video-psychology-ZYvMkrZDaeM": [
+      "memory",
+      "attention"
+    ],
+    "video-psychology-FncQhrEnTEU": [
+      "learning-science",
+      "memory"
+    ],
+    "video-money-z2cOEbFYLsA": [
+      "compounding",
+      "risk-management"
+    ],
+    "video-money-UVDi69qAC6s": [
+      "compounding",
+      "wealth"
+    ],
+    "video-money-Xjp2y5yiKO0": [
+      "risk-management",
+      "wealth"
+    ],
+    "video-history-YJ_10JEXZ_U": [
+      "time-scales",
+      "evolution"
+    ],
+    "video-history-gNbDsp6zUGQ": [
+      "ancient-rome",
+      "innovation"
+    ],
+    "video-history-ybUsCdC1FW8": [
+      "learning-science",
+      "innovation"
+    ],
+    "video-science-qg01MgiVT9k": [
+      "chemistry",
+      "physics"
+    ],
+    "video-science-3q_5UaThgaE": [
+      "planets",
+      "physics"
+    ],
+    "video-space-Lfcex12SyGY": [
+      "space-exploration",
+      "physics"
+    ],
+    "video-space-9lglCWzsgKE": [
+      "planets",
+      "perspective"
+    ],
+    "video-space-F6rEF04gc4c": [
+      "chemistry",
+      "physics"
+    ],
+    "video-health-bmFw2kQ9pRs": [
+      "sleep",
+      "stress"
+    ],
+    "video-health-8ZmRBgrLFO8": [
+      "human-body",
+      "biology"
+    ],
+    "video-health-ZNkJVJ10PXE": [
+      "prevention",
+      "work-culture"
+    ],
+    "video-productivity-7Co-TmrLiYk": [
+      "time-management",
+      "attention"
+    ],
+    "video-productivity-S_R1RebVTg0": [
+      "decision-making",
+      "prioritization"
+    ],
+    "video-productivity-QwK8ChEcV2Q": [
+      "habits",
+      "time-management"
+    ],
+    "video-tech-kpk61QbxFUA": [
+      "misconceptions",
+      "chemistry"
+    ],
+    "video-tech-FkDeO1OFK1U": [
+      "innovation",
+      "physics"
+    ],
+    "video-tech-1T0YWEi_C3Y": [
       "history-of-computing",
       "innovation"
     ]

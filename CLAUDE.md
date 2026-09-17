@@ -11,7 +11,7 @@ Never reduce correctness, relevant source context, validation, tests, or code qu
 
 <!-- veyr:guidance:begin -->
 ## Veyr agent guidance
-> Auto-updated by Veyr · 2026-09-17 11:53 · ~316 tokens · edit ~/.veyr/guidance-rules.json to customize
+> Auto-updated by Veyr · 2026-09-17 11:55 · ~316 tokens · edit ~/.veyr/guidance-rules.json to customize
 
 - **Don't state unverified claims as fact** — If you haven't checked something — a file's contents, whether a test passes, how an API behaves — verify it before asserting it, or say explicitly that it's unverified. Don't present a guess as a confirmed fact.
 - **Don't restate full context before a small edit** — Before making a small, targeted change, don't echo the whole file or unchanged surrounding code back first. Reference only the specific lines being changed.
@@ -22,7 +22,7 @@ Never reduce correctness, relevant source context, validation, tests, or code qu
 
 <!-- veyr:graph-context:begin -->
 ## Veyr codebase graph
-> Powered by Graphify · Full graph · 2026-09-17 11:32
+> Powered by Graphify · Full graph · 2026-09-17 11:55
 
 ### Architecture
 79 files, 516 symbols in 17 communities. Primary languages: TypeScript, JavaScript. Highest-impact code: types.ts, activityStore.ts, ConceptSheet.tsx.
