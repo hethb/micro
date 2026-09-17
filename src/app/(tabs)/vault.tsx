@@ -1,83 +1,85 @@
 import { useState } from 'react';
-import { Pressable, SectionList, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Icon } from '@/components/ui/Icon';
-import { getCard } from '@/content';
-import { describeCard } from '@/content/describe';
-import { TOPICS } from '@/content/topics';
-import { TOPIC_IDS, type Card } from '@/content/types';
-import { useActivity } from '@/state/activityStore';
+import { ConceptSheet, type MapSelection } from '@/components/interests/ConceptSheet';
+import { InterestMap } from '@/components/interests/InterestMap';
+import { topicNodeId } from '@/interests/graph';
+import { useInterestGraph } from '@/interests/useInterestGraph';
 import { colors, radius, space, type } from '@/theme/tokens';
 
 export default function VaultScreen() {
   const insets = useSafeAreaInsets();
-  const saves = useActivity((s) => s.saves);
-
-  const cards = [...saves]
-    .sort((a, b) => b.at - a.at)
-    .map((s) => getCard(s.cardId))
-    .filter((c): c is Card => c !== undefined);
-
-  const sections = TOPIC_IDS.map((id) => ({
-    title: `${TOPICS[id].emoji} ${TOPICS[id].label}`,
-    data: cards.filter((c) => c.topic === id),
-  })).filter((s) => s.data.length > 0);
+  const graph = useInterestGraph();
+  const [selection, setSelection] = useState<MapSelection | null>(null);
+  const selectedId =
+    selection?.kind === 'concept' ? selection.id : selection ? topicNodeId(selection.topic) : null;
 
   return (
     <View style={[styles.fill, { paddingTop: insets.top }]}>
-      <Text style={styles.heading}>Brain Vault</Text>
-      <SectionList
-        sections={sections}
-        keyExtractor={(card) => card.id}
-        contentContainerStyle={styles.list}
-        stickySectionHeadersEnabled={false}
-        renderSectionHeader={({ section }) => <Text style={styles.section}>{section.title}</Text>}
-        renderItem={({ item }) => <SavedRow card={item} />}
-        ListEmptyComponent={
-          <View style={styles.empty}>
-            <Text style={styles.emptyEmoji}>🔖</Text>
-            <Text style={styles.emptyTitle}>Nothing saved yet</Text>
-            <Text style={styles.emptyBody}>Tap Save on any card in your feed to keep it here.</Text>
-          </View>
-        }
-      />
+      <View style={styles.header}>
+        <Text style={styles.heading}>Mind Map</Text>
+        <Text style={styles.subtitle}>
+          Built from what you like, save and finish. Tap an idea to see more or less of it.
+        </Text>
+      </View>
+
+      {graph.nodes.length === 0 ? (
+        <View style={styles.empty}>
+          <Text style={styles.emptyEmoji}>🕸️</Text>
+          <Text style={styles.emptyTitle}>Your map is empty</Text>
+          <Text style={styles.emptyBody}>Pick some topics or like a few cards and your interests will show up here.</Text>
+        </View>
+      ) : (
+        <InterestMap
+          graph={graph}
+          selectedId={selectedId}
+          onSelect={(node) =>
+            setSelection(node.kind === 'topic' ? { kind: 'topic', topic: node.topic } : { kind: 'concept', id: node.id })
+          }
+        />
+      )}
+
+      <View style={styles.legend}>
+        <LegendItem swatch={styles.swatchEngaged} label="Your interests" />
+        <LegendItem swatch={styles.swatchSuggested} label="Suggested" />
+        <LegendItem swatch={styles.swatchFollowed} label="More of this" />
+      </View>
+
+      <ConceptSheet selection={selection} graph={graph} onSelect={setSelection} onClose={() => setSelection(null)} />
     </View>
   );
 }
 
-function SavedRow({ card }: { card: Card }) {
-  const [open, setOpen] = useState(false);
-  const toggleSave = useActivity((s) => s.toggleSave);
-  const { emoji, title, detail } = describeCard(card);
-
+function LegendItem({ swatch, label }: { swatch: StyleProp<ViewStyle>; label: string }) {
   return (
-    <Pressable onPress={() => setOpen((o) => !o)} style={styles.row}>
-      <View style={styles.rowHeader}>
-        <Text style={styles.rowEmoji}>{emoji}</Text>
-        <Text style={styles.rowTitle} numberOfLines={open ? undefined : 2}>
-          {title}
-        </Text>
-        <Pressable onPress={() => toggleSave(card)} hitSlop={10} accessibilityLabel="Remove from vault">
-          <Icon name="bookmark" size={20} color={colors.accent} />
-        </Pressable>
-      </View>
-      {open && <Text style={styles.rowDetail}>{detail}</Text>}
-    </Pressable>
+    <View style={styles.legendItem}>
+      <View style={[styles.swatch, swatch]} />
+      <Text style={styles.legendLabel}>{label}</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   fill: { flex: 1, backgroundColor: colors.bg },
-  heading: { ...type.hero, color: colors.text, paddingHorizontal: space.xl, paddingVertical: space.lg },
-  list: { paddingHorizontal: space.xl, paddingBottom: space.xxl, gap: space.sm },
-  section: { ...type.label, color: colors.textDim, marginTop: space.lg, marginBottom: space.xs },
-  row: { backgroundColor: colors.surface, borderRadius: radius.md, padding: space.lg, gap: space.md },
-  rowHeader: { flexDirection: 'row', alignItems: 'flex-start', gap: space.md },
-  rowEmoji: { fontSize: 20 },
-  rowTitle: { ...type.body, fontWeight: '700', color: colors.text, flex: 1 },
-  rowDetail: { ...type.body, fontSize: 15, color: colors.textMuted },
-  empty: { alignItems: 'center', paddingTop: 120, gap: space.sm },
+  header: { paddingHorizontal: space.xl, paddingTop: space.lg, gap: space.xs },
+  heading: { ...type.hero, color: colors.text },
+  subtitle: { ...type.small, fontWeight: '500', color: colors.textMuted },
+  legend: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: space.lg,
+    paddingVertical: space.md,
+    paddingHorizontal: space.xl,
+  },
+  legendItem: { flexDirection: 'row', alignItems: 'center', gap: space.xs },
+  legendLabel: { ...type.small, color: colors.textMuted },
+  swatch: { width: 12, height: 12, borderRadius: radius.pill },
+  swatchEngaged: { backgroundColor: colors.textMuted },
+  swatchSuggested: { borderWidth: 1.5, borderStyle: 'dashed', borderColor: colors.textMuted },
+  swatchFollowed: { backgroundColor: colors.textMuted, borderWidth: 2, borderColor: colors.accent },
+  empty: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: space.sm, paddingHorizontal: space.xl },
   emptyEmoji: { fontSize: 48 },
   emptyTitle: { ...type.title, color: colors.text },
   emptyBody: { ...type.body, color: colors.textMuted, textAlign: 'center' },

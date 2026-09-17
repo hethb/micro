@@ -20,6 +20,8 @@ const ICONS = {
   vault: { ios: 'books.vertical.fill', android: 'bookmarks', web: 'bookmarks' },
   me: { ios: 'person.crop.circle.fill', android: 'account_circle', web: 'account_circle' },
   book: { ios: 'book.fill', android: 'auto_stories', web: 'auto_stories' },
+  settings: { ios: 'gearshape.fill', android: 'settings', web: 'settings' },
+  back: { ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' },
 } as const satisfies Record<string, SymbolName>;
 
 export type IconName = keyof typeof ICONS;

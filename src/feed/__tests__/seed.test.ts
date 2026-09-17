@@ -1,4 +1,5 @@
 import { ALL_CARDS } from '@/content';
+import { CONCEPTS } from '@/content/concepts';
 import { FORMATS, TOPIC_IDS } from '@/content/types';
 import shorts from '@/entertainment/seed/shorts.json';
 import { VIBES } from '@/entertainment/types';
@@ -31,14 +32,37 @@ describe('seed content', () => {
   it('keeps videos to 60 seconds and books to 3–5 slides', () => {
     for (const card of ALL_CARDS) {
       if (card.format === 'video') {
+        expect(card.durationSec).toBeGreaterThan(0);
         expect(card.durationSec).toBeLessThanOrEqual(60);
-        expect(card.videoUrl).toMatch(/^https:\/\//);
+        expect(card.youtubeId).toMatch(/^[\w-]{11}$/);
+        expect(card.channel.trim()).not.toBe('');
       }
       if (card.format === 'book') {
         expect(card.slides.length).toBeGreaterThanOrEqual(3);
         expect(card.slides.length).toBeLessThanOrEqual(5);
       }
       if (card.format === 'fact') expect(card.sourceUrl).toMatch(/^https:\/\//);
+    }
+  });
+
+  it('tags every card with 2–3 known concepts and keeps the concept graph consistent', () => {
+    const used = new Set<string>();
+    for (const card of ALL_CARDS) {
+      expect(card.concepts?.length).toBeGreaterThanOrEqual(2);
+      expect(card.concepts?.length).toBeLessThanOrEqual(3);
+      for (const id of card.concepts ?? []) {
+        expect(CONCEPTS.has(id)).toBe(true);
+        used.add(id);
+      }
+    }
+    for (const concept of CONCEPTS.values()) {
+      expect(concept.id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
+      expect(TOPIC_IDS).toContain(concept.topic);
+      expect(used.has(concept.id)).toBe(true);
+      for (const related of concept.related) {
+        expect(related).not.toBe(concept.id);
+        expect(CONCEPTS.has(related)).toBe(true);
+      }
     }
   });
 
@@ -54,7 +78,7 @@ describe('seed content', () => {
     const { items } = buildNextBatch({
       cards: ALL_CARDS,
       prefs: { topics: ['space', 'money', 'psychology'], formatBias: 0, depthBias: 0, breakEvery: 5, vibes: ['animals'] },
-      signals: { events: [], hiddenTopics: [], hiddenFormats: [] },
+      signals: { events: [], hiddenTopics: [], hiddenFormats: [], followedConcepts: [], mutedConcepts: [] },
       excludeIds: new Set(),
       cursor: INITIAL_CURSOR,
       rng: createRng(11),

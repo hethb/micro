@@ -1,4 +1,4 @@
-import { FORMATS, type Card, type Format } from '@/content/types';
+import { FORMATS, type Card, type Concept, type Format } from '@/content/types';
 import type { EntertainmentProvider } from '@/entertainment/types';
 
 import { allowedFormats, learningSlotsPerBlock } from './rules';
@@ -19,6 +19,8 @@ export interface BuildBatchInput {
   cursor: FeedCursor;
   rng: () => number;
   entertainment?: EntertainmentProvider;
+  /** Concept graph; lets engagement spill over to related concepts. */
+  concepts?: ReadonlyMap<string, Concept>;
   batchSize?: number;
 }
 
@@ -32,7 +34,11 @@ export interface BuildBatchResult {
 export function buildNextBatch(input: BuildBatchInput): BuildBatchResult {
   const { cards, prefs, signals, rng, entertainment } = input;
   const batchSize = input.batchSize ?? DEFAULT_BATCH_SIZE;
-  const affinity = computeAffinity(signals.events);
+  const cardsById = new Map(cards.map((card) => [card.id, card]));
+  const affinity = computeAffinity(signals.events, {
+    conceptsOf: (id) => cardsById.get(id)?.concepts,
+    concepts: input.concepts,
+  });
   const shown = new Set(input.excludeIds);
   const byFormat = groupByFormat(cards);
   const learningSlots = learningSlotsPerBlock(prefs.breakEvery);

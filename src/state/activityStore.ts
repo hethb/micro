@@ -24,6 +24,8 @@ export interface View {
   at: number;
 }
 
+export type ConceptPreference = 'more' | 'less' | null;
+
 export interface Save {
   cardId: string;
   at: number;
@@ -35,6 +37,8 @@ interface ActivityState {
   saves: Save[];
   hiddenTopics: TopicId[];
   hiddenFormats: Format[];
+  followedConcepts: string[];
+  mutedConcepts: string[];
   seenIds: string[];
   views: View[];
   record(card: Card, type: SignalType): void;
@@ -44,6 +48,8 @@ interface ActivityState {
   hideFormat(format: Format): void;
   unhideTopic(topic: TopicId): void;
   unhideFormat(format: Format): void;
+  /** 'more' follows a concept, 'less' mutes it, null clears either. */
+  setConceptPreference(conceptId: string, preference: ConceptPreference): void;
   logView(view: View): void;
   reset(): void;
 }
@@ -58,12 +64,17 @@ const signal = (card: Card, type: SignalType): StoredSignal => ({
 
 const capped = <T,>(list: T[], max: number) => (list.length > max ? list.slice(-max) : list);
 
+const addUnique = <T,>(list: T[], value: T) => (list.includes(value) ? list : [...list, value]);
+const without = <T,>(list: T[], value: T) => list.filter((v) => v !== value);
+
 const EMPTY = {
   events: [],
   likedIds: [],
   saves: [],
   hiddenTopics: [],
   hiddenFormats: [],
+  followedConcepts: [],
+  mutedConcepts: [],
   seenIds: [],
   views: [],
 };
@@ -109,6 +120,11 @@ export const useActivity = create<ActivityState>()(
         set((s) => (s.hiddenFormats.includes(format) ? s : { hiddenFormats: [...s.hiddenFormats, format] })),
       unhideTopic: (topic) => set((s) => ({ hiddenTopics: s.hiddenTopics.filter((t) => t !== topic) })),
       unhideFormat: (format) => set((s) => ({ hiddenFormats: s.hiddenFormats.filter((f) => f !== format) })),
+      setConceptPreference: (id, preference) =>
+        set((s) => ({
+          followedConcepts: preference === 'more' ? addUnique(s.followedConcepts, id) : without(s.followedConcepts, id),
+          mutedConcepts: preference === 'less' ? addUnique(s.mutedConcepts, id) : without(s.mutedConcepts, id),
+        })),
       logView: (view) =>
         set((s) => ({
           views: capped([...s.views, view], MAX_VIEWS),
@@ -121,7 +137,13 @@ export const useActivity = create<ActivityState>()(
 );
 
 export function selectSignals(s: ActivityState): FeedSignals {
-  return { events: s.events, hiddenTopics: s.hiddenTopics, hiddenFormats: s.hiddenFormats };
+  return {
+    events: s.events,
+    hiddenTopics: s.hiddenTopics,
+    hiddenFormats: s.hiddenFormats,
+    followedConcepts: s.followedConcepts,
+    mutedConcepts: s.mutedConcepts,
+  };
 }
 
 function startOfToday(): number {
