@@ -21,6 +21,7 @@ const COMPLETE_AT = 0.8;
 export function VideoCard({ card, active, nearby, height, width }: CardViewProps & { card: VideoCardData }) {
   const topic = TOPICS[card.topic];
   const muted = useUi((s) => s.muted);
+  const muteForAutoplay = useCallback(() => useUi.getState().setMuted(true), []);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -58,6 +59,7 @@ export function VideoCard({ card, active, nearby, height, width }: CardViewProps
             muted={muted}
             onError={onError}
             onPlaying={onPlaying}
+            onAutoplayBlocked={muteForAutoplay}
             onProgress={onProgress}
           />
         </View>

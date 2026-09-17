@@ -11,6 +11,8 @@ export interface YouTubePlayerProps {
   muted: boolean;
   onError(): void;
   onPlaying(): void;
+  /** Playback was refused without a tap, so the caller should mute and let it retry silently. */
+  onAutoplayBlocked?(): void;
   /** Reported about once a second while playing. */
   onProgress?(currentTime: number, duration: number): void;
 }
@@ -24,6 +26,8 @@ const PLAYER_ORIGIN = 'https://micro.app';
 
 /** If the player hasn't initialised by then, treat the video as unplayable. */
 const READY_TIMEOUT_MS = 15_000;
+/** How long a video gets to actually start before we assume sound is what's blocking it. */
+const AUTOPLAY_TIMEOUT_MS = 1500;
 
 const PLAYING = 1;
 
@@ -62,7 +66,7 @@ function playerHtml(videoId: string, muted: boolean): string {
       height: '100%',
       videoId: ${id},
       playerVars: {
-        controls: 0, loop: 1, playlist: ${id}, modestbranding: 1, rel: 0, iv_load_policy: 3,
+        autoplay: 1, controls: 0, loop: 1, playlist: ${id}, modestbranding: 1, rel: 0, iv_load_policy: 3,
         playsinline: 1, fs: 0, disablekb: 1, mute: ${muted ? 1 : 0},
         origin: ${origin}, widget_referrer: ${origin}
       },
@@ -95,9 +99,11 @@ function playerHtml(videoId: string, muted: boolean): string {
  * Native YouTube player: YouTube's official IFrame API inside a WebView, so YouTube's branding
  * and terms apply and nothing is downloaded or rehosted. The web build uses YouTubePlayer.web.tsx.
  */
-export function YouTubePlayer({ videoId, height, width, play, muted, onError, onPlaying, onProgress }: YouTubePlayerProps) {
+export function YouTubePlayer(props: YouTubePlayerProps) {
+  const { videoId, height, width, play, muted, onError, onPlaying, onProgress, onAutoplayBlocked } = props;
   const webViewRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
+  const playing = useRef(false);
 
   // Only the initial mute state goes into the page; later changes use commands so the video doesn't reload.
   const [initialMuted] = useState(muted);
@@ -119,6 +125,16 @@ export function YouTubePlayer({ videoId, height, width, play, muted, onError, on
     webViewRef.current?.injectJavaScript(`window.microPlayer && window.microPlayer.set(${play}, ${muted}); true;`);
   }, [ready, play, muted]);
 
+  // Autoplay with sound can be refused; muting is what gets the video moving.
+  const onBlocked = useEffectEvent(() => onAutoplayBlocked?.());
+  useEffect(() => {
+    if (!ready || !play || muted) return;
+    const timer = setTimeout(() => {
+      if (!playing.current) onBlocked();
+    }, AUTOPLAY_TIMEOUT_MS);
+    return () => clearTimeout(timer);
+  }, [ready, play, muted]);
+
   const onMessage = useCallback(
     (event: WebViewMessageEvent) => {
       let message: PlayerMessage;
@@ -129,7 +145,10 @@ export function YouTubePlayer({ videoId, height, width, play, muted, onError, on
       }
       if (message.type === 'ready') setReady(true);
       else if (message.type === 'error') onError();
-      else if (message.type === 'state' && message.data === PLAYING) onPlaying();
+      else if (message.type === 'state' && message.data === PLAYING) {
+        playing.current = true;
+        onPlaying();
+      }
       else if (message.type === 'progress' && message.data.duration > 0) {
         onProgress?.(message.data.currentTime, message.data.duration);
       }

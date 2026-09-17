@@ -23,7 +23,7 @@
       "package": "com.hethbhatt.micro"
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
@@ -42,6 +42,12 @@
       "typedRoutes": true,
       "reactCompiler": true
     },
-    "backgroundColor": "#0A0A0F"
+    "backgroundColor": "#0A0A0F",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "34c7f290-246b-4f0b-89ef-733e59f9ffca"
+      }
+    }
   }
 }
