@@ -1,6 +1,7 @@
 import * as Haptics from 'expo-haptics';
 import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 
+import { useComments } from '@/comments/commentsStore';
 import type { Card } from '@/content/types';
 import { useActivity } from '@/state/activityStore';
 import { colors, space } from '@/theme/tokens';
@@ -9,6 +10,7 @@ import { Icon, type IconName } from '../ui/Icon';
 
 interface ActionRailProps {
   card: Card;
+  onComment(): void;
   onMore(): void;
   bottomOffset: number;
 }
@@ -26,12 +28,13 @@ export function shareText(card: Card): string {
   }
 }
 
-export function ActionRail({ card, onMore, bottomOffset }: ActionRailProps) {
+export function ActionRail({ card, onComment, onMore, bottomOffset }: ActionRailProps) {
   const liked = useActivity((s) => s.likedIds.includes(card.id));
   const saved = useActivity((s) => s.saves.some((x) => x.cardId === card.id));
   const toggleLike = useActivity((s) => s.toggleLike);
   const toggleSave = useActivity((s) => s.toggleSave);
   const record = useActivity((s) => s.record);
+  const comments = useComments((s) => s.counts[card.id]);
 
   const onShare = async () => {
     const result = await Share.share({ message: shareText(card) });
@@ -56,6 +59,14 @@ export function ActionRail({ card, onMore, bottomOffset }: ActionRailProps) {
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           toggleSave(card);
+        }}
+      />
+      <RailButton
+        icon="comment"
+        label={comments ? String(comments) : 'Comment'}
+        onPress={() => {
+          Haptics.selectionAsync();
+          onComment();
         }}
       />
       <RailButton icon="share" label="Share" onPress={onShare} />

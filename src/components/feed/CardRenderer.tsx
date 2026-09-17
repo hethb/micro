@@ -19,12 +19,13 @@ interface CardRendererProps {
   height: number;
   width: number;
   topInset: number;
+  onComment(card: Card): void;
   onMore(card: Card): void;
   onBreakFailed(index: number): void;
 }
 
 export const CardRenderer = memo(function CardRenderer(props: CardRendererProps) {
-  const { item, index, active, nearby, height, width, topInset, onMore, onBreakFailed } = props;
+  const { item, index, active, nearby, height, width, topInset, onComment, onMore, onBreakFailed } = props;
   const toggleMuted = useUi((s) => s.toggleMuted);
   const view = { active, nearby, height, width };
 
@@ -39,6 +40,7 @@ export const CardRenderer = memo(function CardRenderer(props: CardRendererProps)
       height={height}
       topInset={topInset}
       bottomInset={0}
+      onComment={onComment}
       onMore={onMore}
       onSingleTap={card.format === 'video' ? toggleMuted : undefined}>
       {card.format === 'fact' && <FactCard {...view} card={card} />}

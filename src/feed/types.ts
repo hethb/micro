@@ -15,7 +15,7 @@ export interface FeedPrefs {
   vibes: readonly Vibe[];
 }
 
-export type SignalType = 'like' | 'save' | 'share' | 'complete' | 'skip';
+export type SignalType = 'like' | 'save' | 'share' | 'comment' | 'complete' | 'skip';
 
 export interface EngagementSignal {
   type: SignalType;

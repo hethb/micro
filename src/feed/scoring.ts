@@ -12,6 +12,7 @@ export const BASE_FORMAT_WEIGHTS: Record<Format, number> = {
 export const SIGNAL_DELTAS: Record<SignalType, number> = {
   save: 0.3,
   share: 0.3,
+  comment: 0.3,
   like: 0.15,
   complete: 0.1,
   skip: -0.1,

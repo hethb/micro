@@ -8,7 +8,7 @@ This is a **clickable prototype**. It uses Expo (SDK 57) and React Native and ru
 
 1. Set up Supabase (one time):
    - Create a Supabase project.
-   - In the SQL editor, run [`supabase/migrations/0001_accounts.sql`](supabase/migrations/0001_accounts.sql). It creates `profiles` and `user_state` with row-level security.
+   - In the SQL editor, run the files in [`supabase/migrations/`](supabase/migrations) in order: `0001_accounts.sql` (profiles and synced state) and `0002_comments.sql` (card comments). Both set up row-level security.
    - Optional for testing: turn off **Authentication → Sign In / Providers → Email → Confirm email**, so new profiles can use the app right away. With it on, users confirm by email and then log in.
    - Copy `.env.local.example` to `.env.local` and fill in the project URL and publishable (anon) key from **Project Settings → API**.
 2. Start the app:
@@ -65,10 +65,15 @@ src/components/     cards/, feed/, prefs/, ui/
 src/hooks/          feed generation, dwell tracking, double-tap, speech, entrance animation
 ```
 
+## Comments
+
+Every learning card has a comment thread, stored in the `comments` table. Comments are written under the profile's name, anyone signed in can read them, and people can delete their own. The side rail shows each card's count (fetched for the cards around the one on screen through the `comment_counts` function), and posting a comment counts as a strong signal for ranking, like a save or a share.
+
 ## Gestures
 
 - **Swipe up:** next card
 - **Swipe sideways:** book summary slides
 - **Double-tap:** like
+- **Comment:** open the card's thread from the side rail
 - **Tap a video or Short:** mute or unmute
 - **Long-press, or "More":** tune the feed (less of this topic or format, report a fact)
