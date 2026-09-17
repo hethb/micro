@@ -1,0 +1,1053 @@
+{
+  "concepts": [
+    {
+      "id": "memory",
+      "label": "Memory",
+      "topic": "psychology",
+      "related": [
+        "learning-science",
+        "sleep",
+        "attention"
+      ]
+    },
+    {
+      "id": "learning-science",
+      "label": "Learning science",
+      "topic": "psychology",
+      "related": [
+        "memory",
+        "classic-experiments",
+        "habits"
+      ]
+    },
+    {
+      "id": "classic-experiments",
+      "label": "Classic experiments",
+      "topic": "psychology",
+      "related": [
+        "cognitive-biases",
+        "learning-science",
+        "scientific-thinking"
+      ]
+    },
+    {
+      "id": "attention",
+      "label": "Attention",
+      "topic": "psychology",
+      "related": [
+        "screen-time",
+        "time-management",
+        "memory"
+      ]
+    },
+    {
+      "id": "cognitive-biases",
+      "label": "Cognitive biases",
+      "topic": "psychology",
+      "related": [
+        "decision-making",
+        "persuasion",
+        "scientific-thinking",
+        "classic-experiments"
+      ]
+    },
+    {
+      "id": "decision-making",
+      "label": "Decision making",
+      "topic": "psychology",
+      "related": [
+        "cognitive-biases",
+        "wealth",
+        "prioritization"
+      ]
+    },
+    {
+      "id": "persuasion",
+      "label": "Persuasion",
+      "topic": "psychology",
+      "related": [
+        "cognitive-biases",
+        "decision-making"
+      ]
+    },
+    {
+      "id": "habits",
+      "label": "Habits",
+      "topic": "psychology",
+      "related": [
+        "compounding",
+        "time-management",
+        "screen-time"
+      ]
+    },
+    {
+      "id": "perspective",
+      "label": "Perspective",
+      "topic": "psychology",
+      "related": [
+        "stoicism",
+        "happiness",
+        "earth-from-space"
+      ]
+    },
+    {
+      "id": "stoicism",
+      "label": "Stoicism",
+      "topic": "psychology",
+      "related": [
+        "perspective",
+        "happiness",
+        "wealth"
+      ]
+    },
+    {
+      "id": "happiness",
+      "label": "Happiness",
+      "topic": "psychology",
+      "related": [
+        "perspective",
+        "stoicism",
+        "cognitive-biases"
+      ]
+    },
+    {
+      "id": "misconceptions",
+      "label": "Common misconceptions",
+      "topic": "science",
+      "related": [
+        "scientific-thinking",
+        "biology",
+        "physics"
+      ]
+    },
+    {
+      "id": "scientific-thinking",
+      "label": "Scientific thinking",
+      "topic": "science",
+      "related": [
+        "misconceptions",
+        "science-communication",
+        "cognitive-biases"
+      ]
+    },
+    {
+      "id": "science-communication",
+      "label": "Science communication",
+      "topic": "science",
+      "related": [
+        "scientific-thinking",
+        "earth-from-space",
+        "space-exploration"
+      ]
+    },
+    {
+      "id": "evolution",
+      "label": "Evolution",
+      "topic": "science",
+      "related": [
+        "biology",
+        "shared-fictions"
+      ]
+    },
+    {
+      "id": "biology",
+      "label": "Biology",
+      "topic": "science",
+      "related": [
+        "evolution",
+        "human-body",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "physics",
+      "label": "Physics",
+      "topic": "science",
+      "related": [
+        "gravity",
+        "chemistry",
+        "the-sun"
+      ]
+    },
+    {
+      "id": "chemistry",
+      "label": "Chemistry",
+      "topic": "science",
+      "related": [
+        "physics",
+        "biology"
+      ]
+    },
+    {
+      "id": "gravity",
+      "label": "Gravity and orbits",
+      "topic": "space",
+      "related": [
+        "physics",
+        "planets",
+        "the-moon",
+        "space-exploration"
+      ]
+    },
+    {
+      "id": "compounding",
+      "label": "Compounding",
+      "topic": "money",
+      "related": [
+        "inflation",
+        "wealth",
+        "habits"
+      ]
+    },
+    {
+      "id": "inflation",
+      "label": "Inflation",
+      "topic": "money",
+      "related": [
+        "compounding",
+        "economics",
+        "history-of-money"
+      ]
+    },
+    {
+      "id": "wealth",
+      "label": "Wealth",
+      "topic": "money",
+      "related": [
+        "compounding",
+        "decision-making",
+        "stoicism"
+      ]
+    },
+    {
+      "id": "history-of-money",
+      "label": "History of money",
+      "topic": "money",
+      "related": [
+        "shared-fictions",
+        "inflation",
+        "word-origins"
+      ]
+    },
+    {
+      "id": "economics",
+      "label": "Economics",
+      "topic": "money",
+      "related": [
+        "inflation",
+        "great-depression",
+        "work-culture"
+      ]
+    },
+    {
+      "id": "risk-management",
+      "label": "Managing risk",
+      "topic": "money",
+      "related": [
+        "prevention",
+        "great-depression"
+      ]
+    },
+    {
+      "id": "shared-fictions",
+      "label": "Shared fictions",
+      "topic": "history",
+      "related": [
+        "history-of-money",
+        "historical-narratives",
+        "evolution"
+      ]
+    },
+    {
+      "id": "time-scales",
+      "label": "Time scales",
+      "topic": "history",
+      "related": [
+        "ancient-egypt",
+        "speed-of-light",
+        "medieval-europe"
+      ]
+    },
+    {
+      "id": "ancient-egypt",
+      "label": "Ancient Egypt",
+      "topic": "history",
+      "related": [
+        "writing-and-printing",
+        "time-scales"
+      ]
+    },
+    {
+      "id": "medieval-europe",
+      "label": "Medieval Europe",
+      "topic": "history",
+      "related": [
+        "war-and-conflict",
+        "epidemics",
+        "time-scales"
+      ]
+    },
+    {
+      "id": "ancient-china",
+      "label": "Ancient China",
+      "topic": "history",
+      "related": [
+        "independent-invention",
+        "writing-and-printing",
+        "history-of-money"
+      ]
+    },
+    {
+      "id": "writing-and-printing",
+      "label": "Writing and printing",
+      "topic": "history",
+      "related": [
+        "ancient-china",
+        "ancient-egypt",
+        "independent-invention"
+      ]
+    },
+    {
+      "id": "independent-invention",
+      "label": "Independent invention",
+      "topic": "history",
+      "related": [
+        "innovation",
+        "ancient-china",
+        "history-of-computing"
+      ]
+    },
+    {
+      "id": "historical-narratives",
+      "label": "Historical narratives",
+      "topic": "history",
+      "related": [
+        "shared-fictions",
+        "war-and-conflict",
+        "memory"
+      ]
+    },
+    {
+      "id": "war-and-conflict",
+      "label": "War and conflict",
+      "topic": "history",
+      "related": [
+        "leadership",
+        "medieval-europe",
+        "historical-narratives"
+      ]
+    },
+    {
+      "id": "leadership",
+      "label": "Leadership",
+      "topic": "history",
+      "related": [
+        "war-and-conflict",
+        "great-depression",
+        "prioritization"
+      ]
+    },
+    {
+      "id": "great-depression",
+      "label": "Great Depression",
+      "topic": "history",
+      "related": [
+        "economics",
+        "risk-management",
+        "leadership"
+      ]
+    },
+    {
+      "id": "word-origins",
+      "label": "Word origins",
+      "topic": "history",
+      "related": [
+        "history-of-money",
+        "history-of-computing"
+      ]
+    },
+    {
+      "id": "speed-of-light",
+      "label": "Speed of light",
+      "topic": "space",
+      "related": [
+        "the-sun",
+        "time-scales",
+        "physics"
+      ]
+    },
+    {
+      "id": "the-sun",
+      "label": "The Sun",
+      "topic": "space",
+      "related": [
+        "speed-of-light",
+        "planets",
+        "physics"
+      ]
+    },
+    {
+      "id": "the-moon",
+      "label": "The Moon",
+      "topic": "space",
+      "related": [
+        "space-exploration",
+        "nasa",
+        "gravity"
+      ]
+    },
+    {
+      "id": "planets",
+      "label": "Planets",
+      "topic": "space",
+      "related": [
+        "mars",
+        "gravity",
+        "the-sun"
+      ]
+    },
+    {
+      "id": "mars",
+      "label": "Mars",
+      "topic": "space",
+      "related": [
+        "planets",
+        "nasa"
+      ]
+    },
+    {
+      "id": "earth-from-space",
+      "label": "Earth from space",
+      "topic": "space",
+      "related": [
+        "perspective",
+        "space-exploration",
+        "science-communication"
+      ]
+    },
+    {
+      "id": "space-exploration",
+      "label": "Space exploration",
+      "topic": "space",
+      "related": [
+        "nasa",
+        "the-moon",
+        "predicting-the-future",
+        "earth-from-space"
+      ]
+    },
+    {
+      "id": "nasa",
+      "label": "NASA missions",
+      "topic": "space",
+      "related": [
+        "space-exploration",
+        "the-moon",
+        "mars"
+      ]
+    },
+    {
+      "id": "sleep",
+      "label": "Sleep",
+      "topic": "health",
+      "related": [
+        "caffeine",
+        "screen-time",
+        "memory"
+      ]
+    },
+    {
+      "id": "caffeine",
+      "label": "Caffeine",
+      "topic": "health",
+      "related": [
+        "sleep",
+        "human-body"
+      ]
+    },
+    {
+      "id": "exercise",
+      "label": "Exercise",
+      "topic": "health",
+      "related": [
+        "prevention",
+        "human-body",
+        "habits"
+      ]
+    },
+    {
+      "id": "prevention",
+      "label": "Prevention",
+      "topic": "health",
+      "related": [
+        "exercise",
+        "risk-management",
+        "epidemics"
+      ]
+    },
+    {
+      "id": "human-body",
+      "label": "Human body",
+      "topic": "health",
+      "related": [
+        "biology",
+        "prevention",
+        "sleep"
+      ]
+    },
+    {
+      "id": "epidemics",
+      "label": "Epidemics",
+      "topic": "health",
+      "related": [
+        "prevention",
+        "medieval-europe",
+        "human-body"
+      ]
+    },
+    {
+      "id": "screen-time",
+      "label": "Screen time",
+      "topic": "health",
+      "related": [
+        "attention",
+        "sleep",
+        "habits"
+      ]
+    },
+    {
+      "id": "time-management",
+      "label": "Time management",
+      "topic": "productivity",
+      "related": [
+        "prioritization",
+        "pomodoro-technique",
+        "attention",
+        "habits"
+      ]
+    },
+    {
+      "id": "pomodoro-technique",
+      "label": "Pomodoro technique",
+      "topic": "productivity",
+      "related": [
+        "time-management",
+        "attention"
+      ]
+    },
+    {
+      "id": "prioritization",
+      "label": "Prioritization",
+      "topic": "productivity",
+      "related": [
+        "time-management",
+        "decision-making",
+        "work-culture"
+      ]
+    },
+    {
+      "id": "work-culture",
+      "label": "Work culture",
+      "topic": "productivity",
+      "related": [
+        "economics",
+        "time-management",
+        "innovation"
+      ]
+    },
+    {
+      "id": "history-of-computing",
+      "label": "History of computing",
+      "topic": "tech",
+      "related": [
+        "innovation",
+        "predicting-the-future",
+        "word-origins",
+        "independent-invention"
+      ]
+    },
+    {
+      "id": "innovation",
+      "label": "Innovation",
+      "topic": "tech",
+      "related": [
+        "predicting-the-future",
+        "history-of-computing",
+        "independent-invention"
+      ]
+    },
+    {
+      "id": "predicting-the-future",
+      "label": "Predicting the future",
+      "topic": "tech",
+      "related": [
+        "innovation",
+        "space-exploration",
+        "history-of-computing"
+      ]
+    },
+    {
+      "id": "stress",
+      "label": "Stress",
+      "topic": "psychology",
+      "related": [
+        "sleep",
+        "exercise",
+        "perspective"
+      ]
+    },
+    {
+      "id": "ancient-rome",
+      "label": "Ancient Rome",
+      "topic": "history",
+      "related": [
+        "ancient-egypt",
+        "medieval-europe",
+        "innovation"
+      ]
+    }
+  ],
+  "cards": {
+    "fact-psychology-01": [
+      "memory",
+      "learning-science",
+      "classic-experiments"
+    ],
+    "fact-psychology-02": [
+      "memory",
+      "learning-science"
+    ],
+    "fact-psychology-03": [
+      "attention",
+      "classic-experiments"
+    ],
+    "fact-psychology-04": [
+      "cognitive-biases",
+      "persuasion"
+    ],
+    "fact-psychology-05": [
+      "cognitive-biases",
+      "decision-making",
+      "classic-experiments"
+    ],
+    "fact-psychology-06": [
+      "memory",
+      "learning-science"
+    ],
+    "fact-money-01": [
+      "compounding",
+      "inflation"
+    ],
+    "fact-money-02": [
+      "history-of-money",
+      "ancient-china"
+    ],
+    "fact-money-03": [
+      "history-of-money",
+      "shared-fictions"
+    ],
+    "fact-money-04": [
+      "history-of-money",
+      "word-origins"
+    ],
+    "fact-money-05": [
+      "inflation",
+      "economics"
+    ],
+    "fact-money-06": [
+      "great-depression",
+      "risk-management"
+    ],
+    "fact-history-01": [
+      "ancient-egypt",
+      "time-scales"
+    ],
+    "fact-history-02": [
+      "medieval-europe",
+      "time-scales"
+    ],
+    "fact-history-03": [
+      "medieval-europe",
+      "war-and-conflict",
+      "historical-narratives"
+    ],
+    "fact-history-04": [
+      "ancient-china",
+      "writing-and-printing",
+      "independent-invention"
+    ],
+    "fact-history-05": [
+      "ancient-egypt",
+      "writing-and-printing"
+    ],
+    "fact-history-06": [
+      "epidemics",
+      "medieval-europe",
+      "economics"
+    ],
+    "fact-science-01": [
+      "misconceptions",
+      "biology"
+    ],
+    "fact-science-02": [
+      "biology",
+      "chemistry"
+    ],
+    "fact-science-03": [
+      "misconceptions",
+      "physics",
+      "chemistry"
+    ],
+    "fact-science-04": [
+      "physics",
+      "the-sun"
+    ],
+    "fact-science-05": [
+      "physics",
+      "chemistry"
+    ],
+    "fact-science-06": [
+      "misconceptions",
+      "human-body",
+      "scientific-thinking"
+    ],
+    "fact-space-01": [
+      "planets",
+      "gravity"
+    ],
+    "fact-space-02": [
+      "speed-of-light",
+      "the-sun"
+    ],
+    "fact-space-03": [
+      "planets",
+      "physics"
+    ],
+    "fact-space-04": [
+      "space-exploration",
+      "gravity"
+    ],
+    "fact-space-05": [
+      "mars",
+      "planets"
+    ],
+    "fact-space-06": [
+      "speed-of-light",
+      "time-scales"
+    ],
+    "fact-health-01": [
+      "exercise",
+      "prevention"
+    ],
+    "fact-health-02": [
+      "human-body",
+      "biology"
+    ],
+    "fact-health-03": [
+      "human-body",
+      "biology"
+    ],
+    "fact-health-04": [
+      "human-body",
+      "prevention",
+      "chemistry"
+    ],
+    "fact-health-05": [
+      "caffeine",
+      "sleep"
+    ],
+    "fact-health-06": [
+      "epidemics",
+      "prevention",
+      "human-body"
+    ],
+    "fact-productivity-01": [
+      "pomodoro-technique",
+      "word-origins"
+    ],
+    "fact-productivity-02": [
+      "time-management",
+      "work-culture"
+    ],
+    "fact-productivity-03": [
+      "prioritization",
+      "economics"
+    ],
+    "fact-productivity-04": [
+      "work-culture",
+      "economics"
+    ],
+    "fact-productivity-05": [
+      "attention",
+      "time-management"
+    ],
+    "fact-productivity-06": [
+      "time-management",
+      "cognitive-biases"
+    ],
+    "fact-tech-01": [
+      "history-of-computing",
+      "word-origins"
+    ],
+    "fact-tech-02": [
+      "history-of-computing",
+      "innovation"
+    ],
+    "fact-tech-03": [
+      "history-of-computing",
+      "the-moon",
+      "nasa"
+    ],
+    "fact-tech-04": [
+      "word-origins",
+      "medieval-europe"
+    ],
+    "fact-tech-05": [
+      "history-of-computing",
+      "predicting-the-future"
+    ],
+    "fact-tech-06": [
+      "independent-invention",
+      "war-and-conflict",
+      "history-of-computing"
+    ],
+    "book-psychology-01": [
+      "cognitive-biases",
+      "decision-making"
+    ],
+    "book-psychology-02": [
+      "persuasion",
+      "decision-making"
+    ],
+    "book-money-01": [
+      "decision-making",
+      "compounding",
+      "wealth"
+    ],
+    "book-history-01": [
+      "shared-fictions",
+      "evolution",
+      "historical-narratives"
+    ],
+    "book-productivity-01": [
+      "habits",
+      "compounding"
+    ],
+    "book-productivity-02": [
+      "attention",
+      "screen-time"
+    ],
+    "book-health-01": [
+      "sleep",
+      "caffeine",
+      "memory"
+    ],
+    "book-space-01": [
+      "earth-from-space",
+      "science-communication",
+      "space-exploration"
+    ],
+    "book-tech-01": [
+      "innovation",
+      "work-culture"
+    ],
+    "book-science-01": [
+      "evolution",
+      "biology"
+    ],
+    "quote-psychology-01": [
+      "stoicism",
+      "perspective"
+    ],
+    "quote-psychology-02": [
+      "perspective",
+      "happiness"
+    ],
+    "quote-psychology-03": [
+      "cognitive-biases",
+      "happiness",
+      "attention"
+    ],
+    "quote-money-01": [
+      "wealth",
+      "decision-making"
+    ],
+    "quote-money-02": [
+      "wealth",
+      "habits"
+    ],
+    "quote-money-03": [
+      "stoicism",
+      "wealth",
+      "happiness"
+    ],
+    "quote-history-01": [
+      "historical-narratives",
+      "memory"
+    ],
+    "quote-history-02": [
+      "war-and-conflict",
+      "leadership"
+    ],
+    "quote-history-03": [
+      "great-depression",
+      "leadership"
+    ],
+    "quote-science-01": [
+      "scientific-thinking",
+      "innovation"
+    ],
+    "quote-science-02": [
+      "scientific-thinking",
+      "cognitive-biases"
+    ],
+    "quote-science-03": [
+      "scientific-thinking",
+      "science-communication"
+    ],
+    "quote-space-01": [
+      "space-exploration",
+      "predicting-the-future"
+    ],
+    "quote-space-02": [
+      "earth-from-space",
+      "perspective",
+      "science-communication"
+    ],
+    "quote-space-03": [
+      "the-moon",
+      "leadership",
+      "space-exploration"
+    ],
+    "quote-health-01": [
+      "prevention",
+      "risk-management"
+    ],
+    "quote-health-02": [
+      "sleep",
+      "human-body"
+    ],
+    "quote-health-03": [
+      "exercise",
+      "prevention",
+      "time-management"
+    ],
+    "quote-productivity-01": [
+      "time-management",
+      "habits"
+    ],
+    "quote-productivity-02": [
+      "prioritization",
+      "leadership"
+    ],
+    "quote-productivity-03": [
+      "prioritization",
+      "decision-making"
+    ],
+    "quote-tech-01": [
+      "innovation",
+      "predicting-the-future"
+    ],
+    "quote-tech-02": [
+      "innovation",
+      "predicting-the-future",
+      "history-of-computing"
+    ],
+    "quote-tech-03": [
+      "history-of-computing",
+      "innovation"
+    ],
+    "video-psychology-CBI8eWEXlMI": [
+      "stress",
+      "perspective"
+    ],
+    "video-psychology-ZYvMkrZDaeM": [
+      "memory",
+      "attention"
+    ],
+    "video-psychology-FncQhrEnTEU": [
+      "learning-science",
+      "memory"
+    ],
+    "video-money-z2cOEbFYLsA": [
+      "compounding",
+      "risk-management"
+    ],
+    "video-money-UVDi69qAC6s": [
+      "compounding",
+      "wealth"
+    ],
+    "video-money-Xjp2y5yiKO0": [
+      "risk-management",
+      "wealth"
+    ],
+    "video-history-YJ_10JEXZ_U": [
+      "time-scales",
+      "evolution"
+    ],
+    "video-history-gNbDsp6zUGQ": [
+      "ancient-rome",
+      "innovation"
+    ],
+    "video-history-ybUsCdC1FW8": [
+      "learning-science",
+      "innovation"
+    ],
+    "video-science-qg01MgiVT9k": [
+      "chemistry",
+      "physics"
+    ],
+    "video-science-3q_5UaThgaE": [
+      "planets",
+      "physics"
+    ],
+    "video-space-Lfcex12SyGY": [
+      "space-exploration",
+      "physics"
+    ],
+    "video-space-9lglCWzsgKE": [
+      "planets",
+      "perspective"
+    ],
+    "video-space-F6rEF04gc4c": [
+      "chemistry",
+      "physics"
+    ],
+    "video-health-bmFw2kQ9pRs": [
+      "sleep",
+      "stress"
+    ],
+    "video-health-8ZmRBgrLFO8": [
+      "human-body",
+      "biology"
+    ],
+    "video-health-ZNkJVJ10PXE": [
+      "prevention",
+      "work-culture"
+    ],
+    "video-productivity-7Co-TmrLiYk": [
+      "time-management",
+      "attention"
+    ],
+    "video-productivity-S_R1RebVTg0": [
+      "decision-making",
+      "prioritization"
+    ],
+    "video-productivity-QwK8ChEcV2Q": [
+      "habits",
+      "time-management"
+    ],
+    "video-tech-kpk61QbxFUA": [
+      "misconceptions",
+      "chemistry"
+    ],
+    "video-tech-FkDeO1OFK1U": [
+      "innovation",
+      "physics"
+    ],
+    "video-tech-1T0YWEi_C3Y": [
+      "history-of-computing",
+      "innovation"
+    ]
+  }
+}

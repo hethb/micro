@@ -17,6 +17,6 @@ export function describeCard(card: Card): { emoji: string; title: string; detail
         detail: [...card.slides.map((s) => `• ${s.heading}: ${s.body}`), `Try this: ${card.takeaway}`].join('\n\n'),
       };
     case 'video':
-      return { emoji, title: card.title, detail: card.caption };
+      return { emoji, title: card.title, detail: `${card.caption}\n\nTaught by ${card.channel} on YouTube.` };
   }
 }

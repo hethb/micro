@@ -1,6 +1,6 @@
 import { useEffect, useEffectEvent, useRef, useState } from 'react';
 
-import type { ShortPlayerProps } from './ShortPlayer';
+import type { YouTubePlayerProps } from './YouTubePlayer';
 
 const YOUTUBE_ORIGIN = 'https://www.youtube.com';
 const PLAYING = 1;
@@ -10,9 +10,11 @@ const PLAYING = 1;
  * protocol (enablejsapi=1). react-native-youtube-iframe needs
  * react-native-web-webview on web, which doesn't work with Metro.
  */
-export function ShortPlayer({ videoId, height, width, play, muted, onError, onPlaying }: ShortPlayerProps) {
+export function YouTubePlayer({ videoId, height, width, play, muted, onError, onPlaying, onProgress }: YouTubePlayerProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [ready, setReady] = useState(false);
+  // YouTube sends duration once and currentTime repeatedly, in separate messages.
+  const durationRef = useRef(0);
 
   // Only the initial mute state goes into the URL; later changes use commands so the video doesn't reload.
   const [initialMuted] = useState(muted);
@@ -42,11 +44,13 @@ export function ShortPlayer({ videoId, height, width, play, muted, onError, onPl
     if (data.event === 'onReady') setReady(true);
     else if (data.event === 'onError') onError();
     else if (data.event === 'onStateChange' && data.info === PLAYING) onPlaying();
-    else if (
-      data.event === 'infoDelivery' &&
-      (data.info as { playerState?: number } | null)?.playerState === PLAYING
-    ) {
-      onPlaying();
+    else if (data.event === 'infoDelivery' && data.info && typeof data.info === 'object') {
+      const info = data.info as { playerState?: number; currentTime?: number; duration?: number };
+      if (info.playerState === PLAYING) onPlaying();
+      if (typeof info.duration === 'number' && info.duration > 0) durationRef.current = info.duration;
+      if (typeof info.currentTime === 'number' && durationRef.current > 0) {
+        onProgress?.(info.currentTime, durationRef.current);
+      }
     }
   });
 
@@ -76,7 +80,7 @@ export function ShortPlayer({ videoId, height, width, play, muted, onError, onPl
       onLoad={onLoad}
       width={width}
       height={height}
-      title="YouTube Short"
+      title="YouTube video"
       allow="autoplay; encrypted-media"
       style={{ border: 0, backgroundColor: '#000', display: 'block' }}
     />

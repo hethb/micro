@@ -11,7 +11,7 @@ Never reduce correctness, relevant source context, validation, tests, or code qu
 
 <!-- veyr:guidance:begin -->
 ## Veyr agent guidance
-> Auto-updated by Veyr · 2026-09-17 10:55 · ~316 tokens · edit ~/.veyr/guidance-rules.json to customize
+> Auto-updated by Veyr · 2026-09-17 13:47 · ~316 tokens · edit ~/.veyr/guidance-rules.json to customize
 
 - **Don't state unverified claims as fact** — If you haven't checked something — a file's contents, whether a test passes, how an API behaves — verify it before asserting it, or say explicitly that it's unverified. Don't present a guess as a confirmed fact.
 - **Don't restate full context before a small edit** — Before making a small, targeted change, don't echo the whole file or unchanged surrounding code back first. Reference only the specific lines being changed.
@@ -22,18 +22,18 @@ Never reduce correctness, relevant source context, validation, tests, or code qu
 
 <!-- veyr:graph-context:begin -->
 ## Veyr codebase graph
-> Powered by Graphify · Full graph · 2026-09-17 02:51
+> Powered by Graphify · Full graph · 2026-09-17 12:38
 
 ### Architecture
-65 files, 407 symbols in 14 communities. Primary languages: TypeScript, JavaScript. Highest-impact code: types.ts, PrefControls.tsx, activityStore.ts.
+91 files, 588 symbols in 25 communities. Primary languages: TypeScript, JavaScript. Highest-impact code: activityStore.ts, types.ts, tokens.ts.
 
 ### Critical path (highest-impact files)
-- **types.ts** (src/content/types.ts) — 34 connections
-- **PrefControls.tsx** (src/components/prefs/PrefControls.tsx) — 32 connections
-- **activityStore.ts** (src/state/activityStore.ts) — 32 connections
-- **engine.ts** (src/feed/engine.ts) — 31 connections
-- **types.ts** (src/feed/types.ts) — 28 connections
+- **activityStore.ts** (src/state/activityStore.ts) — 41 connections
+- **types.ts** (src/content/types.ts) — 40 connections
+- **tokens.ts** (src/theme/tokens.ts) — 39 connections
+- **ConceptSheet.tsx** (src/components/interests/ConceptSheet.tsx) — 35 connections
+- **settings.tsx** (src/app/settings.tsx) — 32 connections
 
 ### Token savings
-Reading this summary saves ~25014 tokens vs. exploring files manually.
+Reading this summary saves ~33428 tokens vs. exploring files manually.
 <!-- veyr:graph-context:end -->

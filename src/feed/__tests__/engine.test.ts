@@ -2,11 +2,18 @@ import { FORMATS, TOPIC_IDS, type Card, type Format, type TopicId } from '@/cont
 import type { EntertainmentProvider } from '@/entertainment/types';
 
 import { buildNextBatch } from '../engine';
+import { computeAffinity } from '../scoring';
 import { createRng } from '../rng';
 import { INITIAL_CURSOR, type FeedItem, type FeedPrefs, type FeedSignals } from '../types';
 
 function makeCard(format: Format, topic: TopicId, n: number): Card {
-  const base = { id: `${format}-${topic}-${n}`, topic, depth: n % 3 === 0 ? 'deep' : 'light' } as const;
+  const base = {
+    id: `${format}-${topic}-${n}`,
+    topic,
+    depth: n % 3 === 0 ? 'deep' : 'light',
+    // Half of each topic's cards share a concept, so concept tuning can be measured within a topic.
+    concepts: n % 2 === 0 ? [`${topic}-even`, 'shared'] : [`${topic}-odd`, 'shared'],
+  } as const;
   switch (format) {
     case 'fact':
       return { ...base, format, headline: 'h', body: 'b', emoji: '✨', sourceLabel: 's', sourceUrl: 'u' };
@@ -15,7 +22,7 @@ function makeCard(format: Format, topic: TopicId, n: number): Card {
     case 'book':
       return { ...base, format, title: 't', author: 'a', hook: 'h', slides: [], takeaway: 't' };
     case 'video':
-      return { ...base, format, title: 't', caption: 'c', videoUrl: 'u', durationSec: 30 };
+      return { ...base, format, title: 't', caption: 'c', youtubeId: 'abcdefghijk', channel: 'c', durationSec: 30 };
   }
 }
 
@@ -41,7 +48,7 @@ const PREFS: FeedPrefs = {
   breakEvery: 5,
   vibes: [],
 };
-const NO_SIGNALS: FeedSignals = { events: [], hiddenTopics: [], hiddenFormats: [] };
+const NO_SIGNALS: FeedSignals = { events: [], hiddenTopics: [], hiddenFormats: [], followedConcepts: [], mutedConcepts: [] };
 
 function simulate(total: number, prefs = PREFS, signals = NO_SIGNALS, seed = 42, batchSize = 10) {
   const rng = createRng(seed);
@@ -156,6 +163,35 @@ describe('buildNextBatch', () => {
       format: 'fact' as const,
     }));
     expect(history({ ...NO_SIGNALS, events: saves })).toBeGreaterThan(history(NO_SIGNALS));
+  });
+
+  it('shows more of followed concepts and less of muted ones', () => {
+    const evenShare = (signals: FeedSignals) => {
+      const cards = simulate(1000, PREFS, signals).flatMap((i) =>
+        i.kind === 'card' && i.card.topic === 'space' ? [i.card] : [],
+      );
+      return cards.filter((c) => c.concepts?.includes('space-even')).length / cards.length;
+    };
+    const baseline = evenShare(NO_SIGNALS);
+    expect(evenShare({ ...NO_SIGNALS, followedConcepts: ['space-even'] })).toBeGreaterThan(baseline + 0.1);
+    expect(evenShare({ ...NO_SIGNALS, mutedConcepts: ['space-even'] })).toBeLessThan(baseline - 0.1);
+  });
+
+  it('spills concept engagement over to related concepts', () => {
+    const concepts = new Map([
+      ['black-holes', { id: 'black-holes', label: 'Black holes', topic: 'space' as const, related: ['relativity'] }],
+      ['relativity', { id: 'relativity', label: 'Relativity', topic: 'science' as const, related: [] }],
+    ]);
+    const events = [{ type: 'save' as const, topic: 'space' as const, format: 'fact' as const, cardId: 'c1' }];
+    const conceptsOf = (id: string) => (id === 'c1' ? ['black-holes'] : undefined);
+
+    const direct = computeAffinity(events, { conceptsOf }).concept;
+    expect(direct).toEqual({ 'black-holes': 0.3 });
+
+    const withSpillover = computeAffinity(events, { conceptsOf, concepts }).concept;
+    expect(withSpillover['black-holes']).toBeCloseTo(0.3);
+    expect(withSpillover.relativity).toBeGreaterThan(0);
+    expect(withSpillover.relativity).toBeLessThan(0.3);
   });
 
   it('is deterministic for a given seed', () => {

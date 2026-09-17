@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { ALL_CARDS } from '@/content';
+import { CONCEPTS } from '@/content/concepts';
 import { shortsProvider } from '@/entertainment/youtubeShorts';
 import { buildNextBatch } from '@/feed/engine';
 import { createRng } from '@/feed/rng';
@@ -42,6 +43,7 @@ export function useFeed() {
         cursor: baseCursors.at(-1) ?? INITIAL_CURSOR,
         rng,
         entertainment: shortsProvider,
+        concepts: CONCEPTS,
       });
       commit([...baseItems, ...result.items], [...baseCursors, ...result.cursors]);
     },

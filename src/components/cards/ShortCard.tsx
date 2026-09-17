@@ -8,7 +8,7 @@ import { colors, radius, space, type } from '@/theme/tokens';
 
 import { Icon } from '../ui/Icon';
 import type { CardViewProps } from './CardProps';
-import { ShortPlayer } from './ShortPlayer';
+import { YouTubePlayer } from './YouTubePlayer';
 
 interface ShortCardProps extends CardViewProps {
   item: EntertainmentItem;
@@ -32,7 +32,7 @@ export function ShortCard({ item, active, nearby, height, width, topInset, onFai
       {nearby && (
         // pointerEvents="none" lets vertical swipes reach the feed instead of the WebView.
         <View style={StyleSheet.absoluteFill} pointerEvents="none">
-          <ShortPlayer
+          <YouTubePlayer
             videoId={item.videoId}
             height={height}
             width={width}

@@ -21,12 +21,18 @@ export interface EngagementSignal {
   type: SignalType;
   topic: TopicId;
   format: Format;
+  /** Lets engagement flow through to the card's concepts. */
+  cardId?: string;
 }
 
 export interface FeedSignals {
   events: readonly EngagementSignal[];
   hiddenTopics: readonly TopicId[];
   hiddenFormats: readonly Format[];
+  /** Concepts the user asked for more of on the mind map. */
+  followedConcepts: readonly string[];
+  /** Concepts the user asked for less of on the mind map. */
+  mutedConcepts: readonly string[];
 }
 
 export type FeedItem =

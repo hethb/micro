@@ -20,6 +20,19 @@ interface BaseCard {
   id: string;
   topic: TopicId;
   depth: Depth;
+  /** Fine-grained concept ids, AI-tagged into seed/concepts.json (see scripts/tag-concepts.mjs). */
+  concepts?: readonly string[];
+}
+
+/** A specific idea inside a topic, e.g. "Compound interest". Nodes of the interest mind map. */
+export interface Concept {
+  /** Kebab-case, stable. */
+  id: string;
+  label: string;
+  /** The topic this concept sits under on the map. */
+  topic: TopicId;
+  /** Concepts someone interested in this one would plausibly also enjoy. */
+  related: readonly string[];
 }
 
 export interface FactCard extends BaseCard {
@@ -65,8 +78,11 @@ export interface VideoCard extends BaseCard {
   title: string;
   /** Caption overlay, max ~140 chars. */
   caption: string;
-  videoUrl: string;
-  /** ≤ 60 */
+  /** A YouTube Short of a real educator teaching, played through YouTube's official embed. */
+  youtubeId: string;
+  /** The creator's YouTube channel name, credited on the card. */
+  channel: string;
+  /** ≤ 60; verified by scripts/check-videos.mjs. */
   durationSec: number;
 }
 

@@ -32,15 +32,22 @@ export function FeedPager() {
     if (items.length === 0) loadMore();
   }, [items.length, loadMore]);
 
-  // Preference changes (made on the Me tab) rebuild the upcoming queue.
+  // Preference changes (Settings) and concept tuning (mind map) rebuild the upcoming queue.
   const prefsVersion = usePrefs((s) => s.version);
-  const seenVersion = useRef(prefsVersion);
+  const followedConcepts = useActivity((s) => s.followedConcepts);
+  const mutedConcepts = useActivity((s) => s.mutedConcepts);
+  const seenTuning = useRef({ prefsVersion, followedConcepts, mutedConcepts });
   useEffect(() => {
-    if (focused && seenVersion.current !== prefsVersion) {
-      seenVersion.current = prefsVersion;
+    const seen = seenTuning.current;
+    const changed =
+      seen.prefsVersion !== prefsVersion ||
+      seen.followedConcepts !== followedConcepts ||
+      seen.mutedConcepts !== mutedConcepts;
+    if (focused && changed) {
+      seenTuning.current = { prefsVersion, followedConcepts, mutedConcepts };
       rebuildAfter(activeRef.current);
     }
-  }, [focused, prefsVersion, rebuildAfter]);
+  }, [focused, prefsVersion, followedConcepts, mutedConcepts, rebuildAfter]);
 
   useDwellTracker(items[activeIndex], focused);
 
