@@ -2,10 +2,13 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { initAccount, useAccount } from '@/account/accountStore';
+import { watchAccountForComments } from '@/comments/session';
 import { usePrefs } from '@/state/prefsStore';
+import { useUi } from '@/state/uiStore';
 import { useHydrated } from '@/state/useHydrated';
 import { colors } from '@/theme/tokens';
 
@@ -18,8 +21,23 @@ export default function RootLayout() {
 
   // Account sync writes into the stores, so it must start after they've loaded from disk.
   useEffect(() => {
-    if (hydrated) return initAccount();
+    if (!hydrated) return;
+    const stopAccount = initAccount();
+    const stopComments = watchAccountForComments();
+    return () => {
+      stopAccount();
+      stopComments();
+    };
   }, [hydrated]);
+
+  // Web only: the viewer's first gesture is what lets videos play with sound.
+  useEffect(() => {
+    if (Platform.OS !== 'web' || typeof window === 'undefined') return;
+    const unlock = () => useUi.getState().unlockSound();
+    const events = ['pointerdown', 'keydown'] as const;
+    events.forEach((event) => window.addEventListener(event, unlock, { once: true, capture: true }));
+    return () => events.forEach((event) => window.removeEventListener(event, unlock, { capture: true }));
+  }, []);
 
   const loading = !hydrated || status === 'loading';
   useEffect(() => {

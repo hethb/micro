@@ -3,6 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { FlatList, StyleSheet, View, type LayoutChangeEvent, type ViewToken } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { CommentSheet } from '@/components/comments/CommentSheet';
+import { useComments } from '@/comments/commentsStore';
 import type { Card } from '@/content/types';
 import type { FeedItem } from '@/feed/types';
 import { useDwellTracker } from '@/hooks/useDwellTracker';
@@ -25,6 +27,7 @@ export function FeedPager() {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [activeIndex, setActiveIndex] = useState(0);
   const [sheetCard, setSheetCard] = useState<Card | null>(null);
+  const [commentCard, setCommentCard] = useState<Card | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const activeRef = useRef(0);
 
@@ -50,6 +53,16 @@ export function FeedPager() {
   }, [focused, prefsVersion, followedConcepts, mutedConcepts, rebuildAfter]);
 
   useDwellTracker(items[activeIndex], focused);
+
+  // Keep the comment counts on the rail filled in for the cards around the one on screen.
+  const loadCounts = useComments((s) => s.loadCounts);
+  useEffect(() => {
+    const nearbyCards = items
+      .slice(Math.max(0, activeIndex - 1), activeIndex + LOAD_AHEAD)
+      .filter((item) => item.kind === 'card')
+      .map((item) => item.card.id);
+    if (nearbyCards.length > 0) void loadCounts(nearbyCards);
+  }, [items, activeIndex, loadCounts]);
 
   // Must stay referentially stable: FlatList doesn't support changing it on the fly.
   const onViewableItemsChanged = useCallback(({ viewableItems }: { viewableItems: ViewToken<FeedItem>[] }) => {
@@ -89,6 +102,7 @@ export function FeedPager() {
         height={size.height}
         width={size.width}
         topInset={insets.top}
+        onComment={setCommentCard}
         onMore={setSheetCard}
         onBreakFailed={replaceBrokenBreak}
       />
@@ -119,6 +133,8 @@ export function FeedPager() {
 
       <FeedHeader topInset={insets.top} />
       <Toast message={toast} onDone={() => setToast(null)} />
+
+      <CommentSheet card={commentCard} onClose={() => setCommentCard(null)} />
 
       <HideSheet
         card={sheetCard}

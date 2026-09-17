@@ -24,6 +24,7 @@ interface CardFrameProps {
   /** Space reserved at the bottom (tab bar etc.). */
   bottomInset: number;
   topInset: number;
+  onComment(card: Card): void;
   onMore(card: Card): void;
   onSingleTap?(): void;
   children: ReactNode;
@@ -31,9 +32,10 @@ interface CardFrameProps {
 
 /**
  * Shared chrome for every learning card: double-tap to like, long-press for
- * "not interested", topic + format badge, and the right-hand action rail.
+ * "not interested", topic + format badge, and the right-hand action rail (like, comment, save, share).
  */
-export function CardFrame({ card, height, bottomInset, topInset, onMore, onSingleTap, children }: CardFrameProps) {
+export function CardFrame(props: CardFrameProps) {
+  const { card, height, bottomInset, topInset, onComment, onMore, onSingleTap, children } = props;
   const [burst, setBurst] = useState(0);
   const topic = TOPICS[card.topic];
 
@@ -71,7 +73,12 @@ export function CardFrame({ card, height, bottomInset, topInset, onMore, onSingl
       </View>
 
       <HeartBurst trigger={burst} />
-      <ActionRail card={card} onMore={() => onMore(card)} bottomOffset={bottomInset + space.xl} />
+      <ActionRail
+        card={card}
+        onComment={() => onComment(card)}
+        onMore={() => onMore(card)}
+        bottomOffset={bottomInset + space.xl}
+      />
     </View>
   );
 }

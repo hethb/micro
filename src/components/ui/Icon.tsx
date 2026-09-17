@@ -22,6 +22,9 @@ const ICONS = {
   book: { ios: 'book.fill', android: 'auto_stories', web: 'auto_stories' },
   settings: { ios: 'gearshape.fill', android: 'settings', web: 'settings' },
   back: { ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' },
+  comment: { ios: 'bubble.right.fill', android: 'chat_bubble', web: 'chat_bubble' },
+  send: { ios: 'arrow.up', android: 'send', web: 'send' },
+  trash: { ios: 'trash', android: 'delete', web: 'delete' },
 } as const satisfies Record<string, SymbolName>;
 
 export type IconName = keyof typeof ICONS;

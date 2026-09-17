@@ -22,6 +22,7 @@ interface ShortCardProps extends CardViewProps {
  */
 export function ShortCard({ item, active, nearby, height, width, topInset, onFailed }: ShortCardProps) {
   const muted = useUi((s) => s.muted);
+  const muteForAutoplay = useCallback(() => useUi.getState().setMuted(true), []);
   const toggleMuted = useUi((s) => s.toggleMuted);
   const [ready, setReady] = useState(false);
 
@@ -40,6 +41,7 @@ export function ShortCard({ item, active, nearby, height, width, topInset, onFai
             muted={muted}
             onError={onFailed}
             onPlaying={onPlaying}
+            onAutoplayBlocked={muteForAutoplay}
           />
         </View>
       )}

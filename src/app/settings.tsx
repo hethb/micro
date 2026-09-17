@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { signOut, useAccount } from '@/account/accountStore';
+import { useModeration } from '@/comments/moderationStore';
 import {
   BreakPicker,
   GoalPicker,
@@ -34,6 +35,8 @@ export default function SettingsScreen() {
   const { learned, minutes } = todayStats(views);
   const displayName = useAccount((s) => s.displayName);
   const email = useAccount((s) => s.email);
+  const blocked = useModeration((s) => s.blocked);
+  const unblock = useModeration((s) => s.unblock);
   const [signingOut, setSigningOut] = useState(false);
   const [signOutError, setSignOutError] = useState<string | null>(null);
 
@@ -84,6 +87,23 @@ export default function SettingsScreen() {
         <VibePicker />
         <SectionLabel>DAILY GOAL</SectionLabel>
         <GoalPicker />
+
+        {blocked.length > 0 && (
+          <>
+            <Text style={styles.heading}>Blocked people</Text>
+            <SectionLabel>YOU WON&apos;T SEE THEIR COMMENTS</SectionLabel>
+            <View style={styles.wrap}>
+              {blocked.map((person) => (
+                <Chip
+                  key={person.id}
+                  label={`✕ ${person.name}`}
+                  selected={false}
+                  onPress={() => void unblock(person.id).catch(() => {})}
+                />
+              ))}
+            </View>
+          </>
+        )}
 
         {(hiddenTopics.length > 0 || hiddenFormats.length > 0) && (
           <>

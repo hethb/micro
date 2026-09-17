@@ -8,7 +8,7 @@ This is a **clickable prototype**. It uses Expo (SDK 57) and React Native and ru
 
 1. Set up Supabase (one time):
    - Create a Supabase project.
-   - In the SQL editor, run [`supabase/migrations/0001_accounts.sql`](supabase/migrations/0001_accounts.sql). It creates `profiles` and `user_state` with row-level security.
+   - In the SQL editor, run the files in [`supabase/migrations/`](supabase/migrations) in order: `0001_accounts.sql` (profiles and synced state), `0002_comments.sql` (card comments) and `0003_moderation.sql` (blocking and reporting). They all set up row-level security.
    - Optional for testing: turn off **Authentication → Sign In / Providers → Email → Confirm email**, so new profiles can use the app right away. With it on, users confirm by email and then log in.
    - Copy `.env.local.example` to `.env.local` and fill in the project URL and publishable (anon) key from **Project Settings → API**.
 2. Start the app:
@@ -65,10 +65,43 @@ src/components/     cards/, feed/, prefs/, ui/
 src/hooks/          feed generation, dwell tracking, double-tap, speech, entrance animation
 ```
 
+## Comments
+
+Every learning card has a comment thread, stored in the `comments` table. Comments are written under the profile's name, anyone signed in can read them, and people can delete their own. The side rail shows each card's count (fetched for the cards around the one on screen through the `comment_counts` function), and posting a comment counts as a strong signal for ranking, like a save or a share.
+
+**Moderation.** Any comment from someone else has a menu to report it (spam, abuse, or something else) or block the person. Both take effect immediately: the `visible_comments` view leaves out comments the reader reported and everyone they blocked, and counts follow the same rule. Blocked people are listed in Settings, where a tap unblocks them. Reports land in `comment_reports` — review them in the Supabase dashboard and delete offending rows from `comments`.
+
+## Publishing
+
+`app.json` uses the app id `com.hethbhatt.micro` on both platforms — change it before the first build, since an id can't be changed afterwards. `eas.json` has three build profiles: `development` (dev client), `preview` (internal sharing) and `production` (store builds, with version numbers tracked by EAS).
+
+```bash
+npm install -g eas-cli
+eas login
+eas init
+
+# Supabase keys: .env.local is never uploaded, so set them on EAS once per environment.
+eas env:set --name EXPO_PUBLIC_SUPABASE_URL --value "https://<ref>.supabase.co" --environment production --visibility plaintext
+eas env:set --name EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY --value "sb_publishable_..." --environment production --visibility plaintext
+
+eas build --platform all --profile production
+eas submit --platform ios      # TestFlight / App Store
+eas submit --platform android  # Play Console
+```
+
+The web build deploys separately: `npx expo export --platform web` then `eas deploy`.
+
+Before submitting for review:
+
+- Turn **Confirm email** back on in Supabase, so people can't sign up as someone else.
+- The comment threads are user-generated content, so the store listing needs terms that say objectionable content isn't tolerated, and reports have to be acted on within 24 hours. Reporting, blocking and deleting your own comments are built in; a word filter and a published moderation contact are not.
+- Check that hiding YouTube's player controls behind Micro's own tap-to-mute layer is acceptable under YouTube's embed terms, and that the seed facts, quotes and book summaries are yours to publish.
+
 ## Gestures
 
 - **Swipe up:** next card
 - **Swipe sideways:** book summary slides
 - **Double-tap:** like
+- **Comment:** open the card's thread from the side rail
 - **Tap a video or Short:** mute or unmute
 - **Long-press, or "More":** tune the feed (less of this topic or format, report a fact)
