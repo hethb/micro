@@ -64,12 +64,10 @@ describe('buildInterestGraph', () => {
     expect(buildInterestGraph(input()).nodes).toEqual([]);
   });
 
-  it('seeds a cold-start map from onboarding topics', () => {
+  it('starts a new account with only the onboarding topic hubs', () => {
     const graph = buildInterestGraph(input({ topics: ['space'] }));
-    expect(stateOf(graph, topicNodeId('space'))).toBe('topic');
-    expect(stateOf(graph, 'black-holes')).toBe('suggested');
-    expect(stateOf(graph, 'exoplanets')).toBe('suggested');
-    expect(stateOf(graph, 'habits')).toBeUndefined();
+    expect(graph.nodes.map((n) => n.id)).toEqual([topicNodeId('space')]);
+    expect(graph.edges).toEqual([]);
   });
 
   it('maps engaged concepts, links concepts from the same card, and suggests related ideas', () => {

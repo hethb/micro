@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text } from 'react-native';
 
 import { colors, radius, space } from '@/theme/tokens';
 
@@ -6,24 +6,30 @@ interface ButtonProps {
   label: string;
   onPress(): void;
   disabled?: boolean;
+  /** Shows a spinner and ignores presses. */
+  loading?: boolean;
   variant?: 'primary' | 'ghost';
 }
 
-export function Button({ label, onPress, disabled, variant = 'primary' }: ButtonProps) {
+export function Button({ label, onPress, disabled, loading, variant = 'primary' }: ButtonProps) {
   const ghost = variant === 'ghost';
   return (
     <Pressable
       onPress={onPress}
-      disabled={disabled}
+      disabled={disabled || loading}
       accessibilityRole="button"
-      accessibilityState={{ disabled }}
+      accessibilityState={{ disabled, busy: loading }}
       style={({ pressed }) => [
         styles.button,
         ghost && styles.ghost,
         disabled && styles.disabled,
         pressed && { opacity: 0.8 },
       ]}>
-      <Text style={[styles.label, ghost && styles.ghostLabel]}>{label}</Text>
+      {loading ? (
+        <ActivityIndicator color={ghost ? colors.textMuted : colors.accentInk} />
+      ) : (
+        <Text style={[styles.label, ghost && styles.ghostLabel]}>{label}</Text>
+      )}
     </Pressable>
   );
 }

@@ -32,13 +32,13 @@ export interface InterestInput {
 
 const MAX_ENGAGED = 24;
 const MAX_SUGGESTED = 8;
-const COLD_START_PER_TOPIC = 3;
 
 export const topicNodeId = (topic: TopicId) => `topic:${topic}`;
 
 /**
  * Builds the user's interest mind map: topic hubs, the concepts they engaged with or
- * followed, and AI-related concepts they haven't explored yet as suggestions.
+ * followed, and AI-related concepts they haven't explored yet as suggestions. Before any
+ * engagement the map is just the topic hubs picked in onboarding.
  */
 export function buildInterestGraph(input: InterestInput): InterestGraph {
   const { concepts } = input;
@@ -85,24 +85,11 @@ function suggestions(
       pull.set(related, (pull.get(related) ?? 0) + strength);
     }
   }
-  if (pull.size > 0) {
-    return [...pull]
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, MAX_SUGGESTED)
-      .map(([id]) => id);
-  }
-  if (states.size > 0) return [];
-
-  // Cold start: the most-used concepts under each topic the user picked in onboarding.
-  const usage = new Map<string, number>();
-  for (const card of input.cards) for (const id of card.concepts ?? []) usage.set(id, (usage.get(id) ?? 0) + 1);
-  return input.topics.flatMap((topic) =>
-    [...input.concepts.values()]
-      .filter((c) => c.topic === topic)
-      .sort((a, b) => (usage.get(b.id) ?? 0) - (usage.get(a.id) ?? 0))
-      .slice(0, COLD_START_PER_TOPIC)
-      .map((c) => c.id),
-  );
+  // A fresh account starts with just its topic hubs; ideas appear once the user engages.
+  return [...pull]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, MAX_SUGGESTED)
+    .map(([id]) => id);
 }
 
 function buildEdges(

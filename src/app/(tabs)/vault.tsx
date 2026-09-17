@@ -12,6 +12,7 @@ export default function VaultScreen() {
   const insets = useSafeAreaInsets();
   const graph = useInterestGraph();
   const [selection, setSelection] = useState<MapSelection | null>(null);
+  const hasIdeas = graph.nodes.some((node) => node.kind === 'concept');
   const selectedId =
     selection?.kind === 'concept' ? selection.id : selection ? topicNodeId(selection.topic) : null;
 
@@ -20,7 +21,9 @@ export default function VaultScreen() {
       <View style={styles.header}>
         <Text style={styles.heading}>Mind Map</Text>
         <Text style={styles.subtitle}>
-          Built from what you like, save and finish. Tap an idea to see more or less of it.
+          {hasIdeas
+            ? 'Built from what you like, save and finish. Tap an idea to see more or less of it.'
+            : 'Just your topics for now. Like, save and finish cards and the ideas behind them will grow here.'}
         </Text>
       </View>
 
@@ -28,7 +31,7 @@ export default function VaultScreen() {
         <View style={styles.empty}>
           <Text style={styles.emptyEmoji}>🕸️</Text>
           <Text style={styles.emptyTitle}>Your map is empty</Text>
-          <Text style={styles.emptyBody}>Pick some topics or like a few cards and your interests will show up here.</Text>
+          <Text style={styles.emptyBody}>Like, save and finish a few cards and your interests will show up here.</Text>
         </View>
       ) : (
         <InterestMap

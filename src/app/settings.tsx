@@ -1,7 +1,9 @@
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { signOut, useAccount } from '@/account/accountStore';
 import {
   BreakPicker,
   GoalPicker,
@@ -30,6 +32,22 @@ export default function SettingsScreen() {
   const goal = usePrefs((s) => s.dailyGoalMin);
   const restartOnboarding = usePrefs((s) => s.restartOnboarding);
   const { learned, minutes } = todayStats(views);
+  const displayName = useAccount((s) => s.displayName);
+  const email = useAccount((s) => s.email);
+  const [signingOut, setSigningOut] = useState(false);
+  const [signOutError, setSignOutError] = useState<string | null>(null);
+
+  const onSignOut = async () => {
+    setSigningOut(true);
+    setSignOutError(null);
+    try {
+      // Route guards send a signed-out user back to the welcome screen.
+      await signOut();
+    } catch (e) {
+      setSignOutError(e instanceof Error ? e.message : 'Could not log out. Try again.');
+      setSigningOut(false);
+    }
+  };
 
   const goBack = () => (router.canGoBack() ? router.back() : router.replace('/me'));
 
@@ -43,6 +61,11 @@ export default function SettingsScreen() {
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
+        <View style={styles.account}>
+          <Text style={styles.accountName}>{displayName ?? 'Your profile'}</Text>
+          {email && <Text style={styles.accountEmail}>{email}</Text>}
+        </View>
+
         <Text style={styles.heading}>Today</Text>
         <View style={styles.stats}>
           <Stat value={String(learned)} label="things learned" />
@@ -77,15 +100,11 @@ export default function SettingsScreen() {
         )}
 
         <View style={styles.actions}>
-          <Button
-            label="Redo onboarding"
-            variant="ghost"
-            onPress={() => {
-              restartOnboarding();
-              router.replace('/onboarding/topics');
-            }}
-          />
+          {/* Route guards take the user back into onboarding. */}
+          <Button label="Redo onboarding" variant="ghost" onPress={restartOnboarding} />
           <Button label="Reset activity & history" variant="ghost" onPress={resetActivity} />
+          {signOutError && <Text style={styles.error}>{signOutError}</Text>}
+          <Button label="Log out" variant="ghost" onPress={onSignOut} loading={signingOut} />
         </View>
       </ScrollView>
     </View>
@@ -119,4 +138,8 @@ const styles = StyleSheet.create({
   statLabel: { ...type.small, color: colors.textMuted },
   wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: space.sm },
   actions: { marginTop: space.xl },
+  account: { backgroundColor: colors.surface, borderRadius: radius.md, padding: space.lg, gap: 2 },
+  accountName: { ...type.title, color: colors.text },
+  accountEmail: { ...type.small, color: colors.textMuted },
+  error: { ...type.small, color: colors.like, textAlign: 'center' },
 });

@@ -31,7 +31,8 @@ export interface Save {
   at: number;
 }
 
-interface ActivityState {
+/** The user's activity as saved to their account. */
+export interface ActivityData {
   events: StoredSignal[];
   likedIds: string[];
   saves: Save[];
@@ -41,6 +42,9 @@ interface ActivityState {
   mutedConcepts: string[];
   seenIds: string[];
   views: View[];
+}
+
+interface ActivityState extends ActivityData {
   record(card: Card, type: SignalType): void;
   toggleLike(card: Card): boolean;
   toggleSave(card: Card): boolean;
@@ -52,6 +56,8 @@ interface ActivityState {
   setConceptPreference(conceptId: string, preference: ConceptPreference): void;
   logView(view: View): void;
   reset(): void;
+  /** Replaces all activity, e.g. with the signed-in account's saved copy. */
+  load(data: ActivityData): void;
 }
 
 const signal = (card: Card, type: SignalType): StoredSignal => ({
@@ -67,7 +73,7 @@ const capped = <T,>(list: T[], max: number) => (list.length > max ? list.slice(-
 const addUnique = <T,>(list: T[], value: T) => (list.includes(value) ? list : [...list, value]);
 const without = <T,>(list: T[], value: T) => list.filter((v) => v !== value);
 
-const EMPTY = {
+export const EMPTY_ACTIVITY: ActivityData = {
   events: [],
   likedIds: [],
   saves: [],
@@ -82,7 +88,7 @@ const EMPTY = {
 export const useActivity = create<ActivityState>()(
   persist(
     (set, get) => ({
-      ...EMPTY,
+      ...EMPTY_ACTIVITY,
       record: (card, type) => set((s) => ({ events: capped([...s.events, signal(card, type)], MAX_EVENTS) })),
       toggleLike: (card) => {
         const liked = !get().likedIds.includes(card.id);
@@ -130,11 +136,26 @@ export const useActivity = create<ActivityState>()(
           views: capped([...s.views, view], MAX_VIEWS),
           seenIds: s.seenIds.includes(view.id) ? s.seenIds : capped([...s.seenIds, view.id], MAX_SEEN),
         })),
-      reset: () => set(EMPTY),
+      reset: () => set(EMPTY_ACTIVITY),
+      load: (data) => set({ ...EMPTY_ACTIVITY, ...data }),
     }),
     { name: 'micro.activity', storage: persistStorage },
   ),
 );
+
+export function selectActivityData(s: ActivityState): ActivityData {
+  return {
+    events: s.events,
+    likedIds: s.likedIds,
+    saves: s.saves,
+    hiddenTopics: s.hiddenTopics,
+    hiddenFormats: s.hiddenFormats,
+    followedConcepts: s.followedConcepts,
+    mutedConcepts: s.mutedConcepts,
+    seenIds: s.seenIds,
+    views: s.views,
+  };
+}
 
 export function selectSignals(s: ActivityState): FeedSignals {
   return {

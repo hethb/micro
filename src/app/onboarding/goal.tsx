@@ -1,5 +1,3 @@
-import { router } from 'expo-router';
-
 import { GoalPicker } from '@/components/prefs/PrefControls';
 import { StepScreen } from '@/components/ui/StepScreen';
 import { usePrefs } from '@/state/prefsStore';
@@ -15,10 +13,8 @@ export default function GoalStep() {
       subtitle="Swap some doomscrolling for learning. You can change this any time."
       cta="Start scrolling"
       footnote="Tip: double-tap to like · long-press to tune your feed"
-      onNext={() => {
-        completeOnboarding();
-        router.replace('/feed');
-      }}>
+      // The root layout's route guards move a newly onboarded user to the feed.
+      onNext={completeOnboarding}>
       <GoalPicker />
     </StepScreen>
   );
