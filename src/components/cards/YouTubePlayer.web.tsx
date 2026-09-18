@@ -1,4 +1,4 @@
-import { useEffect, useEffectEvent, useRef, useState } from 'react';
+import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
 
 import type { YouTubePlayerProps } from './YouTubePlayer';
 
@@ -13,7 +13,7 @@ const AUTOPLAY_TIMEOUT_MS = 1500;
  * react-native-web-webview on web, which doesn't work with Metro.
  */
 export function YouTubePlayer(props: YouTubePlayerProps) {
-  const { videoId, height, width, play, muted, onError, onPlaying, onProgress, onAutoplayBlocked } = props;
+  const { videoId, height, width, play, muted, rate = 1, onError, onPlaying, onProgress, onAutoplayBlocked } = props;
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [ready, setReady] = useState(false);
   const playing = useRef(false);
@@ -71,13 +71,22 @@ export function YouTubePlayer(props: YouTubePlayerProps) {
     return () => window.removeEventListener('message', listener);
   }, []);
 
+  const send = useCallback(
+    (func: string, args: unknown[] = []) =>
+      iframeRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func, args }), YOUTUBE_ORIGIN),
+    [],
+  );
+
   useEffect(() => {
     if (!ready) return;
-    const send = (func: string) =>
-      iframeRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func, args: [] }), YOUTUBE_ORIGIN);
     send(muted ? 'mute' : 'unMute');
     send(play ? 'playVideo' : 'pauseVideo');
-  }, [ready, play, muted]);
+  }, [ready, play, muted, send]);
+
+  useEffect(() => {
+    if (!ready) return;
+    send('setPlaybackRate', [rate]);
+  }, [ready, rate, send]);
 
   // Autoplay with sound is refused until the viewer interacts; muting is what gets it moving.
   const onBlocked = useEffectEvent(() => onAutoplayBlocked?.());

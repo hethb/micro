@@ -6,7 +6,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { TOPICS } from '@/content/topics';
 import type { VideoCard as VideoCardData } from '@/content/types';
 import { useActivity } from '@/state/activityStore';
-import { useUi } from '@/state/uiStore';
+import { FAST_FORWARD_RATE, useUi } from '@/state/uiStore';
 import { colors, radius, space, type } from '@/theme/tokens';
 
 import { Icon } from '../ui/Icon';
@@ -21,6 +21,7 @@ const COMPLETE_AT = 0.8;
 export function VideoCard({ card, active, nearby, height, width }: CardViewProps & { card: VideoCardData }) {
   const topic = TOPICS[card.topic];
   const muted = useUi((s) => s.muted);
+  const fastForwarding = useUi((s) => s.fastForwardId === card.id);
   const muteForAutoplay = useCallback(() => useUi.getState().setMuted(true), []);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -57,6 +58,7 @@ export function VideoCard({ card, active, nearby, height, width }: CardViewProps
             width={width}
             play={active}
             muted={muted}
+            rate={fastForwarding ? FAST_FORWARD_RATE : 1}
             onError={onError}
             onPlaying={onPlaying}
             onAutoplayBlocked={muteForAutoplay}

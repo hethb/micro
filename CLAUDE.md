@@ -11,7 +11,7 @@ Never reduce correctness, relevant source context, validation, tests, or code qu
 
 <!-- veyr:guidance:begin -->
 ## Veyr agent guidance
-> Auto-updated by Veyr · 2026-09-17 18:05 · ~356 tokens · edit ~/.veyr/guidance-rules.json to customize
+> Auto-updated by Veyr · 2026-09-17 23:00 · ~356 tokens · edit ~/.veyr/guidance-rules.json to customize
 
 - **Don't state unverified claims as fact** — If you haven't checked something — a file's contents, whether a test passes, how an API behaves — verify it before asserting it, or say explicitly that it's unverified. Don't present a guess as a confirmed fact.
 - **Don't restate full context before a small edit** — Before making a small, targeted change, don't echo the whole file or unchanged surrounding code back first. Reference only the specific lines being changed.
@@ -25,10 +25,10 @@ Never reduce correctness, relevant source context, validation, tests, or code qu
 
 <!-- veyr:graph-context:begin -->
 ## Veyr codebase graph
-> Powered by Graphify · Full graph · 2026-09-17 18:05
+> Powered by Graphify · Full graph · 2026-09-17 18:22
 
 ### Architecture
-99 files, 650 symbols in 37 communities. Primary languages: TypeScript, JavaScript. Highest-impact code: activityStore.ts, types.ts, tokens.ts.
+99 files, 654 symbols in 38 communities. Primary languages: TypeScript, JavaScript. Highest-impact code: activityStore.ts, types.ts, tokens.ts.
 
 ### Critical path (highest-impact files)
 - **activityStore.ts** (src/state/activityStore.ts) — 42 connections
@@ -38,5 +38,5 @@ Never reduce correctness, relevant source context, validation, tests, or code qu
 - **settings.tsx** (src/app/settings.tsx) — 34 connections
 
 ### Token savings
-Reading this summary saves ~37262 tokens vs. exploring files manually.
+Reading this summary saves ~37506 tokens vs. exploring files manually.
 <!-- veyr:graph-context:end -->

@@ -9,6 +9,8 @@ export interface YouTubePlayerProps {
   width: number;
   play: boolean;
   muted: boolean;
+  /** 1 is normal speed; 2 while the viewer holds to fast-forward. */
+  rate?: number;
   onError(): void;
   onPlaying(): void;
   /** Playback was refused without a tap, so the caller should mute and let it retry silently. */
@@ -82,6 +84,9 @@ function playerHtml(videoId: string, muted: boolean): string {
       if (!player || !player.playVideo) return;
       if (muted) player.mute(); else player.unMute();
       if (play) player.playVideo(); else player.pauseVideo();
+    },
+    rate: function (rate) {
+      if (player && player.setPlaybackRate) player.setPlaybackRate(rate);
     }
   };
   setInterval(function () {
@@ -100,7 +105,7 @@ function playerHtml(videoId: string, muted: boolean): string {
  * and terms apply and nothing is downloaded or rehosted. The web build uses YouTubePlayer.web.tsx.
  */
 export function YouTubePlayer(props: YouTubePlayerProps) {
-  const { videoId, height, width, play, muted, onError, onPlaying, onProgress, onAutoplayBlocked } = props;
+  const { videoId, height, width, play, muted, rate = 1, onError, onPlaying, onProgress, onAutoplayBlocked } = props;
   const webViewRef = useRef<WebView>(null);
   const [ready, setReady] = useState(false);
   const playing = useRef(false);
@@ -124,6 +129,11 @@ export function YouTubePlayer(props: YouTubePlayerProps) {
     if (!ready) return;
     webViewRef.current?.injectJavaScript(`window.microPlayer && window.microPlayer.set(${play}, ${muted}); true;`);
   }, [ready, play, muted]);
+
+  useEffect(() => {
+    if (!ready) return;
+    webViewRef.current?.injectJavaScript(`window.microPlayer && window.microPlayer.rate(${rate}); true;`);
+  }, [ready, rate]);
 
   // Autoplay with sound can be refused; muting is what gets the video moving.
   const onBlocked = useEffectEvent(() => onAutoplayBlocked?.());
